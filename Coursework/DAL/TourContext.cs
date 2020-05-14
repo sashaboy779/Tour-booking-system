@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DAL.Entity;
 using System.Data.Entity;
-using DAL.Entity;
 
 namespace DAL
 {
@@ -15,6 +10,10 @@ namespace DAL
         public DbSet<TourVariant> TourVariants { get; set; }
 
         public TourContext() : base("name=Tour")
+        {
+        }
+
+        public TourContext(string connectionStringName) : base(connectionStringName)
         {
         }
     }
