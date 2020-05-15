@@ -5,8 +5,9 @@
     using System.Data.Entity.Migrations;
     using Entity;
     using System.Collections.Generic;
+    using DAL.EF;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DAL.TourContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<TourContext>
     {
         public Configuration()
         {

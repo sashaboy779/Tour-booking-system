@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Collections.Generic;
 using DAL.Interface;
+using DAL.EF;
 
 namespace DAL.Repository
 {

@@ -1,4 +1,5 @@
-﻿using DAL.Entity;
+﻿using DAL.EF;
+using DAL.Entity;
 
 namespace DAL.Repository
 {
