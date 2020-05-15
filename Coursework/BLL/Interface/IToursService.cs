@@ -13,7 +13,7 @@ namespace BLL.Interface
         TourDto AddTour(TourPostRequest request);
         TourDto GetTour(int id);
         IEnumerable<TourDto> GetTours();
-        TourDto UpdateTour(TourUpdateRequest request);
-        TourDto DeleteTour(int id);
+        void UpdateTour(TourUpdateRequest request);
+        void DeleteTour(int id);
     }
 }
