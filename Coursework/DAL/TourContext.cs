@@ -9,11 +9,7 @@ namespace DAL
         public DbSet<Tour> Tours { get; set; }
         public DbSet<TourVariant> TourVariants { get; set; }
 
-        public TourContext() : base("name=Tour")
-        {
-        }
-
-        public TourContext(string connectionStringName) : base(connectionStringName)
+        public TourContext(string connectionString) : base(connectionString)
         {
         }
     }
