@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,10 +49,16 @@ namespace BLL.Services
         public void UpdateTour(TourUpdateRequest request)
         {
             var tour = _mapper.Map<Tour>(request);
-            if(tour==null) 
-                throw new KeyNotFoundException($"Tour with key:{request.Id} not found");
-            _unitOfWork.Tours.Update(tour);
-            _unitOfWork.Save();
+            try
+            {
+                _unitOfWork.Tours.Update(tour);
+                _unitOfWork.Save();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if(tour==null) 
+                    throw new KeyNotFoundException($"Tour with key:{request.Id} not found");
+            }
         }
 
         public void DeleteTour(int id)
