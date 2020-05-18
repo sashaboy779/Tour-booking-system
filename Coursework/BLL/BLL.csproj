@@ -93,7 +93,7 @@
     <Compile Include="Dto\Responses\TourVariantDto.cs" />
     <Compile Include="Dto\Responses\TravelDto.cs" />
     <Compile Include="Infrastructure\ApplicationUserService.cs" />
-    <Compile Include="Infrastructure\DTO\ApplicationUserDTO.cs" />
+    <Compile Include="Infrastructure\Dto\ApplicationUserDto.cs" />
     <Compile Include="Infrastructure\Interface\IApplicationUserService.cs" />
     <Compile Include="Infrastructure\Interface\IRoleService.cs" />
     <Compile Include="Infrastructure\RoleService.cs" />

@@ -63,7 +63,7 @@ namespace WebAPI.Controllers
 			if (createUserModel == null)
 				return BadRequest("Error. Model is empty");
 
-			var user = new ApplicationUserDTO()
+			var user = new ApplicationUserDto()
 			{
 				UserName = createUserModel.Username,
 				Email = createUserModel.Email,

@@ -30,33 +30,33 @@ namespace BLL.Infrastructure
             return await manager.AddToRolesAsync(id, rolesToAssign);
         }
 
-        public async Task<IdentityResult> CreateAsync(ApplicationUserDTO user, string password)
+        public async Task<IdentityResult> CreateAsync(ApplicationUserDto user, string password)
         {
             var appUser = mapper.Map<ApplicationUser>(user);
             return await manager.CreateAsync(appUser, password);
         }
 
-        public async Task<IdentityResult> DeleteAsync(ApplicationUserDTO user)
+        public async Task<IdentityResult> DeleteAsync(ApplicationUserDto user)
         {
             var appUser = mapper.Map<ApplicationUser>(user);
             return await manager.DeleteAsync(appUser);
         }
 
-        public async Task<ApplicationUserDTO> FindByIdAsync(string id)
+        public async Task<ApplicationUserDto> FindByIdAsync(string id)
         {   
             var appUser = await manager.FindByIdAsync(id);
-            return mapper.Map<ApplicationUserDTO>(appUser);
+            return mapper.Map<ApplicationUserDto>(appUser);
         }
 
-        public async Task<ApplicationUserDTO> FindByNameAsync(string username)
+        public async Task<ApplicationUserDto> FindByNameAsync(string username)
         {
             var appUser = await manager.FindByNameAsync(username);
-            return mapper.Map<ApplicationUserDTO>(appUser);
+            return mapper.Map<ApplicationUserDto>(appUser);
         }
 
-        public List<ApplicationUserDTO> GetAllUsers()
+        public List<ApplicationUserDto> GetAllUsers()
         {
-            return mapper.Map<List<ApplicationUserDTO>>(manager.Users.ToList());
+            return mapper.Map<List<ApplicationUserDto>>(manager.Users.ToList());
         }
 
         public async Task<IList<string>> GetRolesAsync(string id)

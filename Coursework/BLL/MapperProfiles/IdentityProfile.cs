@@ -8,7 +8,7 @@ namespace DependencyResolution
     {
         public DTOProfile()
         {
-            CreateMap<ApplicationUser, ApplicationUserDTO>().ReverseMap();
+            CreateMap<ApplicationUser, ApplicationUserDto>().ReverseMap();
         }
     }
 }
