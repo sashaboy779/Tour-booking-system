@@ -5,13 +5,13 @@ using System.Data.Entity;
 
 namespace DAL.EF
 {
-    public class TourContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Resort> Resorts { get; set; }
         public DbSet<Tour> Tours { get; set; }
         public DbSet<TourVariant> TourVariants { get; set; }
 
-        public TourContext(string connectionStringName) : base(connectionStringName, throwIfV1Schema: false)
+        public ApplicationDbContext(string connectionStringName) : base(connectionStringName, throwIfV1Schema: false)
         {
         }
     }
