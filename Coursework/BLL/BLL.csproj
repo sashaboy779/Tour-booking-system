@@ -54,15 +54,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dto\Enums\DtosTourType.cs" />
+    <Compile Include="Dto\Enums\Food.cs" />
+    <Compile Include="Dto\Enums\RoomType.cs" />
+    <Compile Include="Dto\Enums\TourType.cs" />
+    <Compile Include="Dto\Enums\TransportType.cs" />
     <Compile Include="Dto\Requests\ResortPostRequest.cs" />
     <Compile Include="Dto\Requests\ResortUpdateRequest.cs" />
     <Compile Include="Dto\Requests\TourPostRequest.cs" />
     <Compile Include="Dto\Requests\TourUpdateRequest.cs" />
+    <Compile Include="Dto\Requests\TourVariantPostRequest.cs" />
+    <Compile Include="Dto\Requests\TourVariantUpdateRequest.cs" />
     <Compile Include="Dto\Responses\ResortDto.cs" />
     <Compile Include="Dto\Responses\TourDto.cs" />
+    <Compile Include="Dto\Responses\TourVariantDto.cs" />
+    <Compile Include="Dto\Responses\TravelDto.cs" />
     <Compile Include="Interface\IResortService.cs" />
     <Compile Include="Interface\IToursService.cs" />
+    <Compile Include="Interface\ITourVariantService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ResortService.cs" />
     <Compile Include="Services\ToursService.cs" />

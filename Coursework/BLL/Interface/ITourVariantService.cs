@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.Dto.Enums
+namespace BLL.Interface
 {
-    public enum DtosTourType
+    interface ITourVariantService
     {
-        None, Hot, Excursion
     }
 }

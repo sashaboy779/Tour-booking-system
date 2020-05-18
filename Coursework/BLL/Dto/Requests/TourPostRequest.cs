@@ -11,6 +11,6 @@ namespace BLL.Dto.Requests
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public DtosTourType Type { get; set; } 
+        public TourType Type { get; set; } 
     }
 }

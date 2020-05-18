@@ -12,7 +12,7 @@ namespace BLL.Dto.Responses
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public DtosTourType Type { get; set; }
+        public TourType Type { get; set; }
         public double Rating { get; set; }
     }
 }
