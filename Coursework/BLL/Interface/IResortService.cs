@@ -8,7 +8,7 @@ using BLL.Dto.Responses;
 
 namespace BLL.Interface
 {
-    interface IResortService
+    public interface IResortService
     {
         ResortDto AddResort(ResortPostRequest request);
         ResortDto GetResort(int id);
