@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Dto.Requests;
 using BLL.Dto.Responses;
@@ -35,7 +31,7 @@ namespace BLL.Services
         public ResortDto GetResort(int id)
         {
             var resort = _unitOfWork.Resorts.Get(id);
-            if(resort == null)
+            if (resort == null)
                 throw new KeyNotFoundException($"Resort with key:{id} not found");
             return _mapper.Map<ResortDto>(resort);
         }
@@ -56,7 +52,7 @@ namespace BLL.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if(resort == null)
+                if (resort == null)
                     throw new KeyNotFoundException($"Resort with key:{request.Id} not found");
             }
         }
@@ -64,7 +60,7 @@ namespace BLL.Services
         public void DeleteResort(int id)
         {
             var resort = _unitOfWork.Resorts.Get(id);
-            if(resort == null)
+            if (resort == null)
                 throw new KeyNotFoundException($"Resort with key:{id} not found");
             _unitOfWork.Resorts.Delete(resort);
             _unitOfWork.Save();

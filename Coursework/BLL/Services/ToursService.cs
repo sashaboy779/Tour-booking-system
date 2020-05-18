@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Dto.Requests;
 using BLL.Dto.Responses;
@@ -35,7 +31,7 @@ namespace BLL.Services
         public TourDto GetTour(int id)
         {
             var tour = _unitOfWork.Tours.Get(id);
-            if(tour==null) 
+            if (tour == null)
                 throw new KeyNotFoundException($"Tour with key:{id} not found");
             return _mapper.Map<TourDto>(tour);
         }
@@ -56,7 +52,7 @@ namespace BLL.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if(tour==null) 
+                if (tour == null)
                     throw new KeyNotFoundException($"Tour with key:{request.Id} not found");
             }
         }
@@ -64,7 +60,7 @@ namespace BLL.Services
         public void DeleteTour(int id)
         {
             var tour = _unitOfWork.Tours.Get(id);
-            if(tour==null) 
+            if (tour == null)
                 throw new KeyNotFoundException($"Tour with key:{id} not found");
             _unitOfWork.Tours.Delete(tour);
             _unitOfWork.Save();

@@ -71,6 +71,8 @@
     <Compile Include="Interface\IResortService.cs" />
     <Compile Include="Interface\IToursService.cs" />
     <Compile Include="Interface\ITourVariantService.cs" />
+    <Compile Include="MapperProfiles\DomainToResponse.cs" />
+    <Compile Include="MapperProfiles\RequestToDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ResortService.cs" />
     <Compile Include="Services\ToursService.cs" />
@@ -86,9 +88,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MapperProfiles\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

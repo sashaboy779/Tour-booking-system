@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Dto.Requests;
 using BLL.Dto.Responses;
@@ -13,7 +9,7 @@ using DAL.Interface;
 
 namespace BLL.Services
 {
-    class TourVariantsService : ITourVariantService
+    internal class TourVariantsService : ITourVariantService
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
@@ -35,7 +31,7 @@ namespace BLL.Services
         public TourVariantDto GetTour(int id)
         {
             var tourVariant = _unitOfWork.TourVariants.Get(id);
-            if(tourVariant == null)
+            if (tourVariant == null)
                 throw new KeyNotFoundException($"TourVariant with key:{id} not found");
             return _mapper.Map<TourVariantDto>(tourVariant);
         }
@@ -56,7 +52,7 @@ namespace BLL.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if(tourVariant == null)
+                if (tourVariant == null)
                     throw new KeyNotFoundException($"TourVariant with key:{request.Id} not found");
             }
         }
@@ -64,7 +60,7 @@ namespace BLL.Services
         public void DeleteTourVariant(int id)
         {
             var tourVariant = _unitOfWork.TourVariants.Get(id);
-            if(tourVariant == null)
+            if (tourVariant == null)
                 throw new KeyNotFoundException($"TourVariant with key:{id} not found");
             _unitOfWork.TourVariants.Delete(tourVariant);
             _unitOfWork.Save();
