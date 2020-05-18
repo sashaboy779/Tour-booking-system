@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using BLL.Dto.Requests;
 using BLL.Dto.Responses;
 
 namespace BLL.Interface
 {
-    internal interface IResortService
+    interface IResortService
     {
         ResortDto AddResort(ResortPostRequest request);
         ResortDto GetResort(int id);
