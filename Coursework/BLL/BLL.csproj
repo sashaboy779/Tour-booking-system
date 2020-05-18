@@ -101,6 +101,7 @@
     <Compile Include="Interface\IToursService.cs" />
     <Compile Include="Interface\ITourVariantService.cs" />
     <Compile Include="MapperProfiles\DomainToResponse.cs" />
+    <Compile Include="MapperProfiles\IdentityProfile.cs" />
     <Compile Include="MapperProfiles\RequestToDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\CustomJwtFormat.cs" />
