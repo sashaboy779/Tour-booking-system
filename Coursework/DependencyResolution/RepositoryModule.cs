@@ -1,8 +1,10 @@
 ﻿using DAL;
+using DAL.EF;
 using DAL.Entity;
 using DAL.Interface;
 using DAL.Repository;
 using Ninject.Modules;
+using System.Data.Entity;
 
 namespace DependencyResolution
 {
@@ -14,7 +16,8 @@ namespace DependencyResolution
             Bind<IRepository<Tour>>().To<TourRepository>();
             Bind<IRepository<TourVariant>>().To<TourVariantRepository>();
             Bind<IUnitOfWork>().To<UnitOfWork>();
-            Bind<TourContext>().ToSelf();
+            
+            Bind<ApplicationDbContext>().ToSelf().WithConstructorArgument("connectionStringName", "Tour");
         }
     }
 }

@@ -1,9 +1,6 @@
-﻿using Ninject.Modules;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BLL.Infrastructure;
+using BLL.Infrastructure.Interface;
+using Ninject.Modules;
 
 namespace DependencyResolution
 {
@@ -11,6 +8,8 @@ namespace DependencyResolution
     {
         public override void Load()
         {
+            Bind<IRoleService>().To<RoleService>();
+            Bind<IApplicationUserService>().To<ApplicationUserService>();
         }
     }
 }
