@@ -1,10 +1,11 @@
-﻿using DAL.Entity;
+﻿using DAL.EF;
+using DAL.Entity;
 
 namespace DAL.Repository
 {
     public class TourRepository : BaseRepository<Tour>
     {
-        public TourRepository(TourContext dbContext) : base(dbContext)
+        public TourRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
     }
