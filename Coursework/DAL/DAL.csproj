@@ -89,8 +89,8 @@
     <Compile Include="Identity\ApplicationRoleManager.cs" />
     <Compile Include="Identity\ApplicationUser.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
-    <Compile Include="Interface\IReposirory.cs" />
-    <Compile Include="Interface\IUnitOfWork.cs" />
+    <Compile Include="Repository\Interface\IReposirory.cs" />
+    <Compile Include="Repository\Interface\IUnitOfWork.cs" />
     <Compile Include="Migrations\202005132117072_Init.cs" />
     <Compile Include="Migrations\202005132117072_Init.designer.cs">
       <DependentUpon>202005132117072_Init.cs</DependentUpon>
