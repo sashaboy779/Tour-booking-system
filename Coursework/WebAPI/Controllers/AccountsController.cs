@@ -72,10 +72,10 @@ namespace WebAPI.Controllers
 			};
 
 			IdentityResult addUserResult = await userService.CreateAsync(user, createUserModel.Password);
-
 			if (!addUserResult.Succeeded)
 				return GetErrorResult(addUserResult);
 
+			await AssignRolesToUser(user.Id, new string[] { "User" });
 			Uri locationHeader = new Uri(Url.Link("GetUserById", new { id = user.Id }));
 			return Created(locationHeader, user);
 		}
