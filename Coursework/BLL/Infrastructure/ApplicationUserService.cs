@@ -1,12 +1,10 @@
-﻿using BLL.Infrastructure.DTO;
+﻿using AutoMapper;
+using BLL.Infrastructure.DTO;
 using BLL.Infrastructure.Interface;
 using DAL.Identity;
 using Microsoft.AspNet.Identity;
-using Owin;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.Infrastructure
@@ -14,10 +12,12 @@ namespace BLL.Infrastructure
     public class ApplicationUserService : IApplicationUserService
     {
         private UserManager<ApplicationUser> manager;
+        private IMapper mapper;
 
-        public ApplicationUserService(UserManager<ApplicationUser> userManager)
+        public ApplicationUserService(UserManager<ApplicationUser> userManager, IMapper mapper)
         {
             manager = userManager;
+            this.mapper = mapper;
         }
 
         public async Task<IdentityResult> AddToRoleAsync(string user, string roleName)
@@ -32,64 +32,31 @@ namespace BLL.Infrastructure
 
         public async Task<IdentityResult> CreateAsync(ApplicationUserDTO user, string password)
         {
-            // add map
-            ApplicationUser applicationUser = new ApplicationUser
-            {
-                UserName = user.UserName,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email
-            }; 
-
-            return await manager.CreateAsync(applicationUser, password);
+            var appUser = mapper.Map<ApplicationUser>(user);
+            return await manager.CreateAsync(appUser, password);
         }
 
         public async Task<IdentityResult> DeleteAsync(ApplicationUserDTO user)
         {
-            // add map
-            ApplicationUser applicationUser = new ApplicationUser
-            {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email
-            };
-
-            return await manager.DeleteAsync(applicationUser);
+            var appUser = mapper.Map<ApplicationUser>(user);
+            return await manager.DeleteAsync(appUser);
         }
 
         public async Task<ApplicationUserDTO> FindByIdAsync(string id)
         {   
             var appUser = await manager.FindByIdAsync(id);
-            ApplicationUserDTO user = new ApplicationUserDTO
-            {
-                Id = appUser.Id,
-                FirstName = appUser.FirstName,
-                LastName = appUser.LastName,
-                Email = appUser.Email
-            };
-
-            return user;
+            return mapper.Map<ApplicationUserDTO>(appUser);
         }
 
         public async Task<ApplicationUserDTO> FindByNameAsync(string username)
         {
             var appUser = await manager.FindByNameAsync(username);
-            ApplicationUserDTO user = new ApplicationUserDTO
-            {
-                Id = appUser.Id,
-                FirstName = appUser.FirstName,
-                LastName = appUser.LastName,
-                Email = appUser.Email
-            };
-
-            return user;
+            return mapper.Map<ApplicationUserDTO>(appUser);
         }
 
         public List<ApplicationUserDTO> GetAllUsers()
         {
-            var appUsers = manager.Users.ToList();
-            return new List<ApplicationUserDTO>();
+            return mapper.Map<List<ApplicationUserDTO>>(manager.Users.ToList());
         }
 
         public async Task<IList<string>> GetRolesAsync(string id)
