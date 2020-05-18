@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BLL.Infrastructure.Interface;
 using Microsoft.AspNet.Identity;
@@ -8,8 +9,6 @@ namespace BLL.Infrastructure
 {
     public class RoleService : IRoleService
     {
-        public IQueryable<IdentityRole> Roles => manager.Roles;
-       
         private RoleManager<IdentityRole> manager;
 
         public RoleService(RoleManager<IdentityRole> manager)
@@ -30,6 +29,11 @@ namespace BLL.Infrastructure
         public Task<IdentityRole> FindByIdAsync(string id)
         {
             return manager.FindByIdAsync(id);
+        }
+
+        public List<IdentityRole> GetRoles()
+        {
+            return manager.Roles.ToList();
         }
     }
 }

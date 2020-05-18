@@ -10,7 +10,7 @@ namespace BLL.Infrastructure.Interface
 {
     public interface IRoleService
     {
-        IQueryable<IdentityRole> Roles { get; }
+        List<IdentityRole> GetRoles();
         Task<IdentityRole> FindByIdAsync(string id);
         Task<IdentityResult> CreateAsync(IdentityRole role);
         Task<IdentityResult> DeleteAsync(IdentityRole role);
