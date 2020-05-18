@@ -10,9 +10,9 @@ namespace DAL
         public IRepository<Tour> Tours { get; private set; }
         public IRepository<TourVariant> TourVariants { get; private set; }
 
-        private readonly TourContext dbContext;
+        private readonly ApplicationDbContext dbContext;
 
-        public UnitOfWork(TourContext context, IRepository<Resort> resorts, 
+        public UnitOfWork(ApplicationDbContext context, IRepository<Resort> resorts, 
                       IRepository<Tour> tours, IRepository<TourVariant> tourVariants)
         {
             dbContext = context;

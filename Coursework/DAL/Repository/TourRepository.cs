@@ -5,7 +5,7 @@ namespace DAL.Repository
 {
     public class TourRepository : BaseRepository<Tour>
     {
-        public TourRepository(TourContext dbContext) : base(dbContext)
+        public TourRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
     }

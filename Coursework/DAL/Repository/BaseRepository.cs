@@ -10,10 +10,10 @@ namespace DAL.Repository
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected readonly TourContext db;
+        protected readonly ApplicationDbContext db;
         protected readonly DbSet<TEntity> dbSet;
 
-        public BaseRepository(TourContext context)
+        public BaseRepository(ApplicationDbContext context)
         {
             db = context;
             dbSet = context.Set<TEntity>();
