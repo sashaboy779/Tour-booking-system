@@ -6,15 +6,19 @@
     using Entity;
     using System.Collections.Generic;
     using DAL.EF;
+    using Microsoft.AspNet.Identity;
+    using DAL.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<TourContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(TourContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             var tv1 = new TourVariant()
             {
@@ -95,6 +99,31 @@
             };
 
             context.Resorts.AddOrUpdate(resort, resort2);
+
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext("Tour")));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext("Tour")));
+
+            var user = new ApplicationUser()
+            {
+                UserName = "Adminko",
+                Email = "bob.lol@mymail.com",
+                EmailConfirmed = true,
+                FirstName = "Bob",
+                LastName = "Wins"
+            };
+
+            manager.Create(user, "Password1!");
+
+            if (roleManager.Roles.Count() == 0)
+            {
+                roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "Manager" });
+                roleManager.Create(new IdentityRole { Name = "User" });
+            }
+
+            var adminUser = manager.FindByName("Adminko");
+
+            manager.AddToRoles(adminUser.Id, new string[] { "Admin" });
         }
     }
 }

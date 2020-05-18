@@ -3,11 +3,11 @@ using System.Data.Entity.Infrastructure;
 
 namespace DAL.Migrations.Factory
 {
-    public class TourContextFactory : IDbContextFactory<TourContext>
+    public class TourContextFactory : IDbContextFactory<ApplicationDbContext>
     {
-        public TourContext Create()
+        public ApplicationDbContext Create()
         {
-            return new TourContext("Tour");
+            return new ApplicationDbContext("Tour");
         }
     }
 }
