@@ -66,7 +66,8 @@ namespace WebAPI.App_Start
             var modules = new List<INinjectModule>()
             {
                 new RepositoryModule(),
-                new ServiceModule()
+                new ServiceModule(),
+                new AutoMapperModule()
             };
 
             kernel.Load(modules);
