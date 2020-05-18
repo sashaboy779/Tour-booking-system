@@ -7,9 +7,10 @@ using DAL.Entity;
 
 namespace BLL.Dto.Requests
 {
-    class TourVariantUpdateRequest
+    public class TourVariantUpdateRequest
     {
         public int Id { get; set; }
+        public int TourId { get; set; }
         public double PersonPrice { get; set; }
         public int TicketsNumber { get; set; }
         public RoomType RoomType { get; set; }
