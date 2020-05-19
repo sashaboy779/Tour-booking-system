@@ -10,7 +10,7 @@ namespace DAL.Entity
         public TourType Type { get; set; }
         public double Rating { get; set; }
         public int ResortId { get; set; }
-        public Resort Resort { get; set; }
+        public virtual Resort Resort { get; set; }
         public virtual List<TourVariant> TourVariants { get; set; }
     }
 }

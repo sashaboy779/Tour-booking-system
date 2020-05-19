@@ -97,9 +97,9 @@
     <Compile Include="Infrastructure\Interface\IApplicationUserService.cs" />
     <Compile Include="Infrastructure\Interface\IRoleService.cs" />
     <Compile Include="Infrastructure\RoleService.cs" />
-    <Compile Include="Interface\IResortService.cs" />
-    <Compile Include="Interface\IToursService.cs" />
-    <Compile Include="Interface\ITourVariantService.cs" />
+    <Compile Include="Services\Interface\IResortService.cs" />
+    <Compile Include="Services\Interface\IToursService.cs" />
+    <Compile Include="Services\Interface\ITourVariantService.cs" />
     <Compile Include="MapperProfiles\DomainToResponse.cs" />
     <Compile Include="MapperProfiles\IdentityProfile.cs" />
     <Compile Include="MapperProfiles\RequestToDomain.cs" />

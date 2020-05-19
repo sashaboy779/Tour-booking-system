@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BLL.Dto.Requests;
 using BLL.Dto.Responses;
+using BLL.Infrastructure.DTO;
 
 namespace BLL.Interface
 {
@@ -15,5 +16,8 @@ namespace BLL.Interface
         IEnumerable<TourVariantDto> GetTourVariants();
         void UpdateTourVariant(TourVariantUpdateRequest request);
         void DeleteTourVariant(int id);
+        IEnumerable<TourVariantDto> GetByTour(int tourId);
+        IEnumerable<TourVariantDto> GetByTourist(int userId);
+        IEnumerable<ApplicationUserDto> GetTourists(int id);
     }
 }

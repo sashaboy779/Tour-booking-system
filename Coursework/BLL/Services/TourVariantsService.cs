@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Dto.Requests;
 using BLL.Dto.Responses;
+using BLL.Infrastructure.DTO;
 using BLL.Interface;
 using DAL.Entity;
+using DAL.Identity;
 using DAL.Interface;
+using Microsoft.AspNet.Identity;
 
 namespace BLL.Services
 {
@@ -17,11 +20,13 @@ namespace BLL.Services
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ApplicationUserManager _userManager;
 
-        public TourVariantsService(IUnitOfWork unitOfWork, IMapper mapper)
+        public TourVariantsService(IUnitOfWork unitOfWork, IMapper mapper, ApplicationUserManager userManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _userManager = userManager;
         }
 
         public TourVariantDto AddTourVariant(TourVariantPostRequest request)
@@ -68,6 +73,24 @@ namespace BLL.Services
                 throw new KeyNotFoundException($"TourVariant with key:{id} not found");
             _unitOfWork.TourVariants.Delete(tourVariant);
             _unitOfWork.Save();
+        }
+
+        public IEnumerable<TourVariantDto> GetByTour(int tourId)
+        {
+            var tourVariants = _unitOfWork.TourVariants.Find(t => t.TourId == tourId);
+            return _mapper.Map<IEnumerable<TourVariantDto>>(tourVariants);
+        }
+
+        public IEnumerable<TourVariantDto> GetByTourist(string userId)
+        {
+            var tourVariants = _userManager.FindById(userId).Tours;
+            return _mapper.Map<IEnumerable<TourVariantDto>>(tourVariants);
+        }
+
+        public IEnumerable<ApplicationUserDto> GetTourists(int id)
+        {
+            var tourists = _unitOfWork.TourVariants.Get(id).Tourists;
+            return _mapper.Map<IEnumerable<ApplicationUserDto>>(tourists);
         }
     }
 }
