@@ -16,7 +16,7 @@ using Microsoft.AspNet.Identity;
 
 namespace BLL.Services
 {
-    class TourVariantsService : ITourVariantService
+    public class TourVariantsService : ITourVariantService
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;

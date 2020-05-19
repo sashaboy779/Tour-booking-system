@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -23,7 +24,7 @@ namespace DependencyResolution
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddMaps(GetType().Assembly);
+                cfg.AddMaps(new []{"BLL"});
             });
 
             return config;

@@ -17,7 +17,7 @@ namespace BLL.Interface
         void UpdateTourVariant(TourVariantUpdateRequest request);
         void DeleteTourVariant(int id);
         IEnumerable<TourVariantDto> GetByTour(int tourId);
-        IEnumerable<TourVariantDto> GetByTourist(int userId);
+        IEnumerable<TourVariantDto> GetByTourist(string userId);
         IEnumerable<ApplicationUserDto> GetTourists(int id);
     }
 }
