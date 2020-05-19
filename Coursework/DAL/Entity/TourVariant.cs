@@ -11,6 +11,8 @@ namespace DAL.Entity
         public int TicketsNumber { get; set; }
         public RoomType RoomType { get; set; }
         public Food Food { get; set; }
+        public int TourId { get; set; }
+        public virtual Tour Tour { get; set; }
         public virtual Travel Travel { get; set; }
         public virtual List<ApplicationUser> Tourists { get; set; }
     }

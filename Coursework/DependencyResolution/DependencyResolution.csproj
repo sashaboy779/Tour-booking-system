@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperModule.cs" />
-    <Compile Include="DTOProfile.cs" />
     <Compile Include="IdentityModule.cs" />
     <Compile Include="RepositoryModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,5 +1,7 @@
 ﻿using BLL.Infrastructure;
 using BLL.Infrastructure.Interface;
+using BLL.Interface;
+using BLL.Services;
 using Ninject.Modules;
 
 namespace DependencyResolution
@@ -10,6 +12,9 @@ namespace DependencyResolution
         {
             Bind<IRoleService>().To<RoleService>();
             Bind<IApplicationUserService>().To<ApplicationUserService>();
+            Bind<IResortService, ResortService>();
+            Bind<IToursService, ToursService>();
+            Bind<IResortService, ResortService>();
         }
     }
 }
