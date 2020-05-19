@@ -37,7 +37,7 @@ namespace BLL.Services
             return _mapper.Map<TourVariantDto>(request);
         }
 
-        public TourVariantDto GetTour(int id)
+        public TourVariantDto GetTourVariant(int id)
         {
             var tourVariant = _unitOfWork.TourVariants.Get(id);
             if(tourVariant == null)
