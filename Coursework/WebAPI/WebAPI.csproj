@@ -249,6 +249,7 @@
     <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Controllers\TourVariantsController.cs" />
     <Compile Include="Filters\KeyNotFoundExceptionFilterAttribute.cs" />
+    <Compile Include="Filters\NullParameterFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

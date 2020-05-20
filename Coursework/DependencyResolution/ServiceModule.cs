@@ -12,9 +12,9 @@ namespace DependencyResolution
         {
             Bind<IRoleService>().To<RoleService>();
             Bind<IApplicationUserService>().To<ApplicationUserService>();
-            Bind<IResortService, ResortService>();
-            Bind<IToursService, ToursService>();
-            Bind<IResortService, ResortService>();
+            Bind<IResortService>().To<ResortService>();
+            Bind<IToursService>().To<ToursService>();
+            Bind<ITourVariantService>().To<TourVariantsService>();
         }
     }
 }

@@ -9,13 +9,14 @@ namespace WebAPI.Controllers
     public class ResortsController : ApiController
     {
         private readonly IResortService _resortService;
+        private readonly IToursService _toursService;
 
-        public ResortsController(IResortService resortService)
+        public ResortsController(IResortService resortService, IToursService toursService)
         {
             _resortService = resortService;
+            _toursService = toursService;
         }
 
-        [Route("{id}")]
         [HttpGet]
         public IHttpActionResult GetResort(int id)
         {
@@ -30,7 +31,16 @@ namespace WebAPI.Controllers
             return Ok(resorts);
         }
 
+        [Route("{id}/tours")]
+        [HttpGet]
+        public IHttpActionResult GetTours(int id)
+        {
+            var tours = _toursService.GetByResort(id);
+            return Ok(tours);
+        }
+
         [HttpPost]
+        [NullParameterFilter("request")]
         public IHttpActionResult AddResort(ResortPostRequest request)
         {
             var resort = _resortService.AddResort(request);
@@ -38,12 +48,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
+        [NullParameterFilter("request")]
         public void UpdateResort(ResortUpdateRequest request)
         {
             _resortService.UpdateResort(request);
         }
 
-        [Route("id")]
+        [Route("{id}")]
         [HttpDelete]
         public void Delete(int id)
         {

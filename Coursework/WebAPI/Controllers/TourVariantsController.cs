@@ -6,6 +6,7 @@ using WebAPI.Filters;
 namespace WebAPI.Controllers
 {
     [KeyNotFoundExceptionFilter]
+    [RoutePrefix("api/tourVariants")]
     public class TourVariantsController : ApiController
     {
         private readonly ITourVariantService _tourVariantService;
@@ -15,12 +16,12 @@ namespace WebAPI.Controllers
             _tourVariantService = tourVariantService;
         }
 
-        [Route("{id}", Name = "GetTourVariant")]
+        [Route("{id}")]
         [HttpGet]
         public IHttpActionResult GetTourVariant(int id)
         {
             var tourVariant = _tourVariantService.GetTourVariant(id);
-            return Ok(tourVariant);
+            return Ok(tourVariant);             
         }
 
         [HttpGet]
@@ -30,7 +31,24 @@ namespace WebAPI.Controllers
             return Ok(tourVariants);
         }
 
+        [Route("{id}/tourists")]
+        [HttpGet]
+        public IHttpActionResult GetTourists(int id)
+        {
+            var tourists = _tourVariantService.GetTourists(id);
+            return Ok(tourists);
+        }
+
+        [Route("byTourist/{touristId}")]
+        [HttpGet]
+        public IHttpActionResult GetByTourist(string touristId)
+        {
+            var tourVariants = _tourVariantService.GetByTourist(touristId);
+            return Ok(tourVariants);
+        }
+
         [HttpPost]
+        [NullParameterFilter("request")]
         public IHttpActionResult AddTourVariant(TourVariantPostRequest request)
         {
             var tourVariant = _tourVariantService.AddTourVariant(request);
@@ -38,11 +56,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
+        [NullParameterFilter("request")]
         public void UpdateTourVariant(TourVariantUpdateRequest request)
         {
             _tourVariantService.UpdateTourVariant(request);
         }
 
+        [Route("{id}")]
         [HttpDelete]
         public void DeleteTourVariant(int id)
         {

@@ -9,8 +9,15 @@ namespace WebAPI.Filters
     {
         public override void OnException(HttpActionExecutedContext context)
         {
-            if(context.Exception is KeyNotFoundException)
-                context.Response = new HttpResponseMessage(HttpStatusCode.NotFound);
+            if (context.Exception is KeyNotFoundException)
+            {
+                context.Response = context.Request.CreateResponse(
+                    HttpStatusCode.NotFound,
+                    new
+                    {
+                        message = context.Exception.Message
+                    });
+            }
         }
     }
 }
