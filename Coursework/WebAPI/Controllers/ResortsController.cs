@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System.Net;
+using System.Web.Http;
+using System.Web.Http.Results;
 using BLL.Dto.Requests;
 using BLL.Interface;
 using WebAPI.Filters;
@@ -46,22 +48,28 @@ namespace WebAPI.Controllers
         [NullParameterFilter("request")]
         public IHttpActionResult AddResort(ResortPostRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var resort = _resortService.AddResort(request);
             return Created(Url.Link("GetResort", new{id = resort.Id}),resort);
         }
 
         [HttpPut]
         [NullParameterFilter("request")]
-        public void UpdateResort(ResortUpdateRequest request)
+        public IHttpActionResult UpdateResort(ResortUpdateRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             _resortService.UpdateResort(request);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         [Route("{id}")]
         [HttpDelete]
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
             _resortService.DeleteResort(id);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
     }

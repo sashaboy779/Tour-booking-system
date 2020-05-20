@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Net;
+using System.Web.Http;
 using BLL.Dto.Requests;
 using BLL.Interface;
 using WebAPI.Filters;
@@ -53,6 +54,8 @@ namespace WebAPI.Controllers
         [InvalidOperationExceptionFilter]
         public IHttpActionResult AddTourVariant(TourVariantPostRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var tourVariant = _tourVariantService.AddTourVariant(request);
             return Created(Url.Link("GetTourVariant", new { id = tourVariant.Id}), tourVariant);
         }
@@ -60,16 +63,20 @@ namespace WebAPI.Controllers
         [HttpPut]
         [NullParameterFilter("request")]
         [InvalidOperationExceptionFilter]
-        public void UpdateTourVariant(TourVariantUpdateRequest request)
+        public IHttpActionResult UpdateTourVariant(TourVariantUpdateRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             _tourVariantService.UpdateTourVariant(request);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         [Route("{id}")]
         [HttpDelete]
-        public void DeleteTourVariant(int id)
+        public IHttpActionResult DeleteTourVariant(int id)
         {
             _tourVariantService.DeleteTourVariant(id);
+            return StatusCode(HttpStatusCode.NoContent);
         }
     }
 }

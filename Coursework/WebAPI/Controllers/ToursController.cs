@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Net;
+using System.Web.Http;
 using BLL.Dto.Requests;
 using BLL.Interface;
 using WebAPI.Filters;
@@ -46,22 +47,28 @@ namespace WebAPI.Controllers
         [NullParameterFilter("request")]
         public IHttpActionResult AddTour(TourPostRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var tour = _toursService.AddTour(request);
             return Created(Url.Link("GetTour", new {id = tour.Id}), tour);
         }
 
         [HttpPut]
         [NullParameterFilter("request")]
-        public void UpdateTour(TourUpdateRequest request)
+        public IHttpActionResult UpdateTour(TourUpdateRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             _toursService.UpdateTour(request);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         [Route("{id}")]
         [HttpDelete]
-        public void DeleteTour(int id)
+        public IHttpActionResult DeleteTour(int id)
         {
             _toursService.DeleteTour(id);
+            return StatusCode(HttpStatusCode.NoContent);
         }
     }
 }
