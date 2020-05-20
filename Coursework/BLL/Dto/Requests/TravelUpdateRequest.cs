@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DAL.Entity;
 
-namespace DAL.Entity
+namespace BLL.Dto.Requests
 {
-    public class Travel
+    public class TravelUpdateRequest
     {
         public int Id { get; set; }
         public bool IsIncluded { get; set; }
@@ -10,6 +15,6 @@ namespace DAL.Entity
         public DateTime Arrival { get; set; }
         public string DepartureCity { get; set; }
         public string ArrivalCity { get; set; }
-        public TransportType? TransportType { get; set; }
+        public TransportType TransportType { get; set; }
     }
 }

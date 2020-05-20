@@ -98,6 +98,10 @@
     <Compile Include="Migrations\202005201252436_AddedNullableFieldsInTravel.designer.cs">
       <DependentUpon>202005201252436_AddedNullableFieldsInTravel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005201303489_FixNullableDateTime.cs" />
+    <Compile Include="Migrations\202005201303489_FixNullableDateTime.designer.cs">
+      <DependentUpon>202005201303489_FixNullableDateTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repository\Interface\IReposirory.cs" />
     <Compile Include="Repository\Interface\IUnitOfWork.cs" />
     <Compile Include="Migrations\202005132117072_Init.cs" />
@@ -134,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005201252436_AddedNullableFieldsInTravel.resx">
       <DependentUpon>202005201252436_AddedNullableFieldsInTravel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201303489_FixNullableDateTime.resx">
+      <DependentUpon>202005201303489_FixNullableDateTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

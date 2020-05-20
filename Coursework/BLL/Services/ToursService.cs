@@ -23,8 +23,16 @@ namespace BLL.Services
         public TourDto AddTour(TourPostRequest request)
         {
             var tour = _mapper.Map<Tour>(request);
-            _unitOfWork.Tours.Create(tour);
-            _unitOfWork.Save();
+            try
+            {
+                _unitOfWork.Tours.Create(tour);
+                _unitOfWork.Save();
+            }
+            catch (DbUpdateException)
+            {
+                throw new KeyNotFoundException($"Resort with id:{request.ResortId} not found");
+            }
+
             return _mapper.Map<TourDto>(tour);
         }
 

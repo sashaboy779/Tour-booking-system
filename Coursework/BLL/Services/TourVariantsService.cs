@@ -32,8 +32,16 @@ namespace BLL.Services
         public TourVariantDto AddTourVariant(TourVariantPostRequest request)
         {
             var tourVariant = _mapper.Map<TourVariant>(request);
-            _unitOfWork.TourVariants.Create(tourVariant);
-            _unitOfWork.Save();
+            try
+            {
+                _unitOfWork.TourVariants.Create(tourVariant);
+                _unitOfWork.Save();
+            }
+            catch (DbUpdateException)
+            {
+                throw new KeyNotFoundException($"Tour with key:{request.TourId} not found");
+            }
+
             return _mapper.Map<TourVariantDto>(tourVariant);
         }
 
@@ -61,9 +69,13 @@ namespace BLL.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if(tourVariant == null)
-                    throw new KeyNotFoundException($"TourVariant with key:{request.Id} not found");
+                throw new KeyNotFoundException($"TourVariant with key:{request.Id} not found");
             }
+            catch (InvalidOperationException)
+            {
+                throw new InvalidOperationException($"Id:{request.Travel.Id} of Travel does not match id:{request.Id} of TourVariant");
+            }
+
         }
 
         public void DeleteTourVariant(int id)

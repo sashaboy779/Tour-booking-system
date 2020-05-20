@@ -20,7 +20,8 @@ namespace BLL.MapperProfiles
             CreateMap<TourUpdateRequest, Tour>();
             CreateMap<TourVariantPostRequest, TourVariant>();
             CreateMap<TourVariantUpdateRequest, TourVariant>();
-            CreateMap<TravelDto, Travel>();
+            CreateMap<TravelPostRequest, Travel>();
+            CreateMap<TravelUpdateRequest, Travel>();
         }
     }
 }

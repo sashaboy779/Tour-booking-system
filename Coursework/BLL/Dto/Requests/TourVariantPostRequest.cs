@@ -15,6 +15,6 @@ namespace BLL.Dto.Requests
         public int TicketsNumber { get; set; }
         public RoomType RoomType { get; set; }
         public Food Food { get; set; }
-        public virtual TravelDto Travel { get; set; }
+        public virtual TravelPostRequest Travel { get; set; }
     }
 }

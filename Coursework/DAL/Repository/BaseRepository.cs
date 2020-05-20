@@ -24,7 +24,7 @@ namespace DAL.Repository
             dbSet.Add(item);
         }
 
-        public void Delete(TEntity item)
+        public virtual void Delete(TEntity item)
         {
             dbSet.Remove(item);
         }
@@ -44,7 +44,7 @@ namespace DAL.Repository
             return dbSet.ToList();
         }
 
-        public void Update(TEntity item)
+        public virtual void Update(TEntity item)
         {
             dbSet.Attach(item);
             db.Entry(item).State = EntityState.Modified;
