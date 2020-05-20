@@ -94,6 +94,10 @@
     <Compile Include="Migrations\202005191539029_ChangedRalationship.designer.cs">
       <DependentUpon>202005191539029_ChangedRalationship.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005201252436_AddedNullableFieldsInTravel.cs" />
+    <Compile Include="Migrations\202005201252436_AddedNullableFieldsInTravel.designer.cs">
+      <DependentUpon>202005201252436_AddedNullableFieldsInTravel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repository\Interface\IReposirory.cs" />
     <Compile Include="Repository\Interface\IUnitOfWork.cs" />
     <Compile Include="Migrations\202005132117072_Init.cs" />
@@ -127,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005191539029_ChangedRalationship.resx">
       <DependentUpon>202005191539029_ChangedRalationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201252436_AddedNullableFieldsInTravel.resx">
+      <DependentUpon>202005201252436_AddedNullableFieldsInTravel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
