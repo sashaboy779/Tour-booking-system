@@ -90,28 +90,12 @@
     <Compile Include="Identity\ApplicationRoleManager.cs" />
     <Compile Include="Identity\ApplicationUser.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
-    <Compile Include="Migrations\202005191539029_ChangedRalationship.cs" />
-    <Compile Include="Migrations\202005191539029_ChangedRalationship.designer.cs">
-      <DependentUpon>202005191539029_ChangedRalationship.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005201252436_AddedNullableFieldsInTravel.cs" />
-    <Compile Include="Migrations\202005201252436_AddedNullableFieldsInTravel.designer.cs">
-      <DependentUpon>202005201252436_AddedNullableFieldsInTravel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005201303489_FixNullableDateTime.cs" />
-    <Compile Include="Migrations\202005201303489_FixNullableDateTime.designer.cs">
-      <DependentUpon>202005201303489_FixNullableDateTime.cs</DependentUpon>
+    <Compile Include="Migrations\202005202034181_InitialCreate.cs" />
+    <Compile Include="Migrations\202005202034181_InitialCreate.designer.cs">
+      <DependentUpon>202005202034181_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Repository\Interface\IReposirory.cs" />
     <Compile Include="Repository\Interface\IUnitOfWork.cs" />
-    <Compile Include="Migrations\202005132117072_Init.cs" />
-    <Compile Include="Migrations\202005132117072_Init.designer.cs">
-      <DependentUpon>202005132117072_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005151428540_AddIdentity.cs" />
-    <Compile Include="Migrations\202005151428540_AddIdentity.designer.cs">
-      <DependentUpon>202005151428540_AddIdentity.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Factory\TourContextFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,20 +111,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202005132117072_Init.resx">
-      <DependentUpon>202005132117072_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005151428540_AddIdentity.resx">
-      <DependentUpon>202005151428540_AddIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005191539029_ChangedRalationship.resx">
-      <DependentUpon>202005191539029_ChangedRalationship.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005201252436_AddedNullableFieldsInTravel.resx">
-      <DependentUpon>202005201252436_AddedNullableFieldsInTravel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005201303489_FixNullableDateTime.resx">
-      <DependentUpon>202005201303489_FixNullableDateTime.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005202034181_InitialCreate.resx">
+      <DependentUpon>202005202034181_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

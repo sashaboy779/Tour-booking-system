@@ -56,8 +56,7 @@ namespace BLL.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if(resort == null)
-                    throw new KeyNotFoundException($"Resort with key:{request.Id} not found");
+                throw new KeyNotFoundException($"Resort with key:{request.Id} not found");
             }
         }
 

@@ -32,6 +32,8 @@ namespace BLL.Services
         public TourVariantDto AddTourVariant(TourVariantPostRequest request)
         {
             var tourVariant = _mapper.Map<TourVariant>(request);
+            if(request.Travel == null)
+                throw new InvalidOperationException("Travel cannot be null");
             try
             {
                 _unitOfWork.TourVariants.Create(tourVariant);
@@ -61,6 +63,8 @@ namespace BLL.Services
 
         public void UpdateTourVariant(TourVariantUpdateRequest request)
         {
+            if(request.Travel == null)
+                throw new InvalidOperationException("Travel cannot be null");
             var tourVariant = _mapper.Map<TourVariant>(request);
             try
             {

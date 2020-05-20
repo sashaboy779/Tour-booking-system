@@ -15,11 +15,5 @@ namespace DAL.Repository
             base.Update(item);
             db.Entry(item.Travel).State = EntityState.Modified;
         }
-
-        public override void Delete(TourVariant item)
-        {
-            db.Set<Travel>().Remove(item.Travel);
-            base.Delete(item);
-        }
     }
 }

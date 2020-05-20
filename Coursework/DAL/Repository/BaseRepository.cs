@@ -24,7 +24,7 @@ namespace DAL.Repository
             dbSet.Add(item);
         }
 
-        public virtual void Delete(TEntity item)
+        public void Delete(TEntity item)
         {
             dbSet.Remove(item);
         }
