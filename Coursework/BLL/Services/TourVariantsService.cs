@@ -34,7 +34,7 @@ namespace BLL.Services
             var tourVariant = _mapper.Map<TourVariant>(request);
             _unitOfWork.TourVariants.Create(tourVariant);
             _unitOfWork.Save();
-            return _mapper.Map<TourVariantDto>(request);
+            return _mapper.Map<TourVariantDto>(tourVariant);
         }
 
         public TourVariantDto GetTourVariant(int id)
@@ -83,13 +83,19 @@ namespace BLL.Services
 
         public IEnumerable<TourVariantDto> GetByTourist(string userId)
         {
-            var tourVariants = _userManager.FindById(userId).Tours;
+            var tourist = _userManager.FindById(userId);
+            if(tourist == null)
+                throw new KeyNotFoundException($"Cannot find user with given id: {userId}");
+            var tourVariants = tourist.Tours;
             return _mapper.Map<IEnumerable<TourVariantDto>>(tourVariants);
         }
 
         public IEnumerable<ApplicationUserDto> GetTourists(int id)
         {
-            var tourists = _unitOfWork.TourVariants.Get(id).Tourists;
+            var tourVariant = _unitOfWork.TourVariants.Get(id);
+            if(tourVariant == null)
+                throw new KeyNotFoundException($"TourVariant with key:{id} not found");
+            var tourists = tourVariant.Tourists;
             return _mapper.Map<IEnumerable<ApplicationUserDto>>(tourists);
         }
     }

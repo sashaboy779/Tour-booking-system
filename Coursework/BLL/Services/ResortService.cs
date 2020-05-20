@@ -29,7 +29,7 @@ namespace BLL.Services
             var resort = _mapper.Map<Resort>(request);
             _unitOfWork.Resorts.Create(resort);
             _unitOfWork.Save();
-            return _mapper.Map<ResortDto>(request);
+            return _mapper.Map<ResortDto>(resort);
         }
 
         public ResortDto GetResort(int id)

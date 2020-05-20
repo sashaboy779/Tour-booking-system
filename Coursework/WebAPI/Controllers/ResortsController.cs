@@ -6,6 +6,7 @@ using WebAPI.Filters;
 namespace WebAPI.Controllers
 {
     [KeyNotFoundExceptionFilter]
+    [RoutePrefix("api/resorts")]
     public class ResortsController : ApiController
     {
         private readonly IResortService _resortService;
@@ -17,6 +18,7 @@ namespace WebAPI.Controllers
             _toursService = toursService;
         }
 
+        [Route("{id}", Name = "GetResort")]
         [HttpGet]
         public IHttpActionResult GetResort(int id)
         {

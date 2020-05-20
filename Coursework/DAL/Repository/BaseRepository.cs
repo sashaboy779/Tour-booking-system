@@ -31,7 +31,7 @@ namespace DAL.Repository
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            return dbSet.Where(predicate);
+            return dbSet.Where(predicate).ToList();
         }
 
         public TEntity Get(int id)

@@ -16,7 +16,7 @@ namespace WebAPI.Controllers
             _tourVariantService = tourVariantService;
         }
 
-        [Route("{id}")]
+        [Route("{id}", Name = "GetTourVariant")]
         [HttpGet]
         public IHttpActionResult GetTourVariant(int id)
         {
