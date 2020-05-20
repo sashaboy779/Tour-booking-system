@@ -64,9 +64,9 @@ namespace WebAPI
                 {
                     AuthenticationMode = AuthenticationMode.Active,
                     AllowedAudiences = new[] { audienceId },
-                    IssuerSecurityKeyProviders  = new IIssuerSecurityKeyProvider[]
+                    IssuerSecurityTokenProviders  = new IIssuerSecurityTokenProvider[]
                     {
-                        new SymmetricKeyIssuerSecurityKeyProvider(issuer, audienceSecret)
+                        new SymmetricKeyIssuerSecurityTokenProvider(issuer, audienceSecret)
                     }
                 });
         }
