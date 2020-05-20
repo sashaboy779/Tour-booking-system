@@ -7,6 +7,7 @@ namespace WebAPI.Controllers
 {
     [KeyNotFoundExceptionFilter]
     [RoutePrefix("api/tourVariants")]
+    [Authorize(Roles = "Admin, Moderator")]
     public class TourVariantsController : ApiController
     {
         private readonly ITourVariantService _tourVariantService;
@@ -49,6 +50,7 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [NullParameterFilter("request")]
+        [InvalidOperationExceptionFilter]
         public IHttpActionResult AddTourVariant(TourVariantPostRequest request)
         {
             var tourVariant = _tourVariantService.AddTourVariant(request);
@@ -57,6 +59,7 @@ namespace WebAPI.Controllers
 
         [HttpPut]
         [NullParameterFilter("request")]
+        [InvalidOperationExceptionFilter]
         public void UpdateTourVariant(TourVariantUpdateRequest request)
         {
             _tourVariantService.UpdateTourVariant(request);

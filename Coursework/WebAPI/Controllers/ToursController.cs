@@ -7,6 +7,7 @@ namespace WebAPI.Controllers
 {
     [KeyNotFoundExceptionFilter]
     [RoutePrefix("api/tours")]
+    [Authorize(Roles = "Admin, Moderator")]
     public class ToursController : ApiController
     {
         private readonly IToursService _toursService;
