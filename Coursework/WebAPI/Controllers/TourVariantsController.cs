@@ -8,7 +8,7 @@ namespace WebAPI.Controllers
 {
     [KeyNotFoundExceptionFilter]
     [RoutePrefix("api/tourVariants")]
-    [Authorize(Roles = "Admin, Moderator")]
+    [Authorize(Roles = "Admin, Manager")]
     public class TourVariantsController : ApiController
     {
         private readonly ITourVariantService _tourVariantService;
