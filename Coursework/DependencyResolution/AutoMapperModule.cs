@@ -24,7 +24,7 @@ namespace DependencyResolution
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddMaps(new []{"BLL"});
+                cfg.AddMaps(new []{"BLL", "WebAPI"});
             });
 
             return config;
