@@ -10,7 +10,7 @@ using WebAPI.Models;
 namespace WebAPI.Controllers
 {
 	[RoutePrefix("api/roles")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Manager")]
     public class RolesController : BaseApiController
     {
         public RolesController(IApplicationUserService userService, IRoleService roleService)

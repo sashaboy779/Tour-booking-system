@@ -14,5 +14,14 @@ namespace DAL.EF
         public ApplicationDbContext(string connectionStringName) : base(connectionStringName, throwIfV1Schema: false)
         {
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<TourVariant>()
+                .HasRequired(tv => tv.Travel) 
+                .WithRequiredPrincipal()
+                .WillCascadeOnDelete(true); 
+        }
     }
 }

@@ -8,18 +8,18 @@ using DAL.Entity;
 
 namespace BLL.Dto.Requests
 {
-    public class TourUpdateRequest
+    public class TravelUpdateRequest
     {
         [Required]
         public int Id { get; set; }
         [Required]
-        public int ResortId { get; set; }   
+        public bool IsIncluded { get; set; }
         [Required]
-        [MaxLength(50)]
-        public string Name { get; set; }
-        [MaxLength(200)]
-        public string Description { get; set; }
+        public DateTime Departure { get; set; }
         [Required]
-        public TourType Type { get; set; }
+        public DateTime Arrival { get; set; }
+        public string DepartureCity { get; set; }
+        public string ArrivalCity { get; set; }
+        public TransportType TransportType { get; set; }
     }
 }

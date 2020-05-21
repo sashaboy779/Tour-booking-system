@@ -31,7 +31,7 @@ namespace DAL.Repository
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            return dbSet.Where(predicate);
+            return dbSet.Where(predicate).ToList();
         }
 
         public TEntity Get(int id)
@@ -44,7 +44,7 @@ namespace DAL.Repository
             return dbSet.ToList();
         }
 
-        public void Update(TEntity item)
+        public virtual void Update(TEntity item)
         {
             dbSet.Attach(item);
             db.Entry(item).State = EntityState.Modified;
