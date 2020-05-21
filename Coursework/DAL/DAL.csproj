@@ -91,7 +91,7 @@
     <Compile Include="Identity\ApplicationUser.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Migrations\202005191539029_ChangedRalationship.cs" />
-    <Compile Include="Migrations\202005191539029_ChangedRalationship.designer.cs">
+    <Compile Include="Migrations\202005191539029_ChangedRalationship.Designer.cs">
       <DependentUpon>202005191539029_ChangedRalationship.cs</DependentUpon>
     </Compile>
     <Compile Include="Repository\Interface\IReposirory.cs" />
