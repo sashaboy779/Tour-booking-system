@@ -9,7 +9,6 @@ using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
-
 	[RoutePrefix("api/accounts")]
 	public class AccountsController : BaseApiController
 	{
