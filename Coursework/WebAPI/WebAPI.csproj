@@ -249,11 +249,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ResortsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Controllers\TourVariantsController.cs" />
     <Compile Include="Filters\InvalidOperationExceptionFilterAttribute.cs" />
     <Compile Include="Filters\KeyNotFoundExceptionFilterAttribute.cs" />
     <Compile Include="Filters\NullParameterFilterAttribute.cs" />
+    <Compile Include="Filters\ValidateModelStateFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
