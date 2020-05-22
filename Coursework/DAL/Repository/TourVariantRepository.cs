@@ -1,4 +1,5 @@
-﻿using DAL.EF;
+﻿using System.Data.Entity;
+using DAL.EF;
 using DAL.Entity;
 
 namespace DAL.Repository
@@ -7,6 +8,12 @@ namespace DAL.Repository
     {
         public TourVariantRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
+        }
+
+        public override void Update(TourVariant item)
+        {
+            base.Update(item);
+            db.Entry(item.Travel).State = EntityState.Modified;
         }
     }
 }

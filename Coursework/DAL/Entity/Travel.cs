@@ -10,6 +10,6 @@ namespace DAL.Entity
         public DateTime Arrival { get; set; }
         public string DepartureCity { get; set; }
         public string ArrivalCity { get; set; }
-        public TransportType TransportType { get; set; }
+        public TransportType? TransportType { get; set; }
     }
 }

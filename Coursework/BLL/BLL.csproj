@@ -92,6 +92,8 @@
     <Compile Include="Dto\Requests\TourUpdateRequest.cs" />
     <Compile Include="Dto\Requests\TourVariantPostRequest.cs" />
     <Compile Include="Dto\Requests\TourVariantUpdateRequest.cs" />
+    <Compile Include="Dto\Requests\TravelPostRequest.cs" />
+    <Compile Include="Dto\Requests\TravelUpdateRequest.cs" />
     <Compile Include="Dto\Responses\ResortDto.cs" />
     <Compile Include="Dto\Responses\TourDto.cs" />
     <Compile Include="Dto\Responses\TourVariantDto.cs" />

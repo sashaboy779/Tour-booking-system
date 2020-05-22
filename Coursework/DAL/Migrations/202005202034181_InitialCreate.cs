@@ -3,10 +3,52 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddIdentity : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Resorts",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Country = c.String(),
+                        City = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Tours",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Description = c.String(),
+                        Type = c.Int(nullable: false),
+                        Rating = c.Double(nullable: false),
+                        ResortId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Resorts", t => t.ResortId, cascadeDelete: true)
+                .Index(t => t.ResortId);
+            
+            CreateTable(
+                "dbo.TourVariants",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        TouristsNumber = c.Int(nullable: false),
+                        PersonPrice = c.Double(nullable: false),
+                        TicketsNumber = c.Int(nullable: false),
+                        RoomType = c.Int(nullable: false),
+                        Food = c.Int(nullable: false),
+                        TourId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Tours", t => t.TourId, cascadeDelete: true)
+                .Index(t => t.TourId);
+            
             CreateTable(
                 "dbo.AspNetUsers",
                 c => new
@@ -68,6 +110,22 @@
                 .Index(t => t.RoleId);
             
             CreateTable(
+                "dbo.Travels",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        IsIncluded = c.Boolean(nullable: false),
+                        Departure = c.DateTime(nullable: false),
+                        Arrival = c.DateTime(nullable: false),
+                        DepartureCity = c.String(),
+                        ArrivalCity = c.String(),
+                        TransportType = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.TourVariants", t => t.Id, cascadeDelete: true)
+                .Index(t => t.Id);
+            
+            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
@@ -95,25 +153,35 @@
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Travels", "Id", "dbo.TourVariants");
             DropForeignKey("dbo.ApplicationUserTourVariants", "TourVariant_Id", "dbo.TourVariants");
             DropForeignKey("dbo.ApplicationUserTourVariants", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.TourVariants", "TourId", "dbo.Tours");
+            DropForeignKey("dbo.Tours", "ResortId", "dbo.Resorts");
             DropIndex("dbo.ApplicationUserTourVariants", new[] { "TourVariant_Id" });
             DropIndex("dbo.ApplicationUserTourVariants", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Travels", new[] { "Id" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.TourVariants", new[] { "TourId" });
+            DropIndex("dbo.Tours", new[] { "ResortId" });
             DropTable("dbo.ApplicationUserTourVariants");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Travels");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.TourVariants");
+            DropTable("dbo.Tours");
+            DropTable("dbo.Resorts");
         }
     }
 }

@@ -107,10 +107,10 @@
                 TouristsNumber = 4,
                 Travel = new Travel()
                 {
-                    Arrival = new DateTime(2020, 7, 2),
-                    Departure = new DateTime(2020, 7, 15),
-                    ArrivalCity = "Charlotte",
-                    DepartureCity = "Envigado",
+                    Arrival = new DateTime(2020, 6, 2),
+                    Departure = new DateTime(2020, 6, 15),
+                    ArrivalCity = "Kyiv",
+                    DepartureCity = "Rivne",
                     IsIncluded = true,
                     TransportType = TransportType.Plane
                 }
