@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -246,16 +249,22 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ResortsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Controllers\TourVariantsController.cs" />
     <Compile Include="Filters\InvalidOperationExceptionFilterAttribute.cs" />
     <Compile Include="Filters\KeyNotFoundExceptionFilterAttribute.cs" />
     <Compile Include="Filters\NullParameterFilterAttribute.cs" />
+    <Compile Include="Filters\ValidateModelStateFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MapperProfiles\SearchToParameter.cs" />
     <Compile Include="Models\CreateRoleBindingModel.cs" />
     <Compile Include="Models\CreateUserBindingModel.cs" />
+    <Compile Include="Models\SearchModels\ResortSearchModel.cs" />
+    <Compile Include="Models\SearchModels\TourSearchModel.cs" />
+    <Compile Include="Models\SearchModels\TourVariantSearchModel.cs" />
     <Compile Include="Models\UserReturnModel.cs" />
     <Compile Include="Models\UsersInRoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -18,7 +18,6 @@
             AutomaticMigrationsEnabled = false;
         }
 
-
         protected override void Seed(ApplicationDbContext context)
         {
             var tv1 = new TourVariant()
@@ -28,6 +27,11 @@
                 RoomType = RoomType.Honeymoon,
                 TicketsNumber = 10,
                 TouristsNumber = 6,
+                Travel = new Travel
+                {
+                    Arrival = new DateTime(2020, 8, 20),
+                    Departure = new DateTime(2020, 8, 28)
+                }
             };
 
             var tv2 = new TourVariant()
@@ -65,7 +69,7 @@
                     TransportType = TransportType.Plane
                 }
             };
-
+            
             var tv4 = new TourVariant()
             {
                 Food = Food.BB,
@@ -73,6 +77,11 @@
                 RoomType = RoomType.Duplex,
                 TicketsNumber = 0,
                 TouristsNumber = 1,
+                Travel = new Travel
+                {
+                    Arrival = new DateTime(2020, 8, 20),
+                    Departure = new DateTime(2020, 8, 28)
+                }
             };
 
             var tv5 = new TourVariant()
@@ -82,6 +91,11 @@
                 RoomType = RoomType.DeLuxe,
                 TicketsNumber = 6,
                 TouristsNumber = 3,
+                Travel = new Travel
+                {
+                    Arrival = new DateTime(2020, 8, 20),
+                    Departure = new DateTime(2020, 8, 28)
+                }
             };
 
             var tv6 = new TourVariant()
@@ -93,31 +107,30 @@
                 TouristsNumber = 4,
                 Travel = new Travel()
                 {
-                    Arrival = new DateTime(2020, 7, 2),
-                    Departure = new DateTime(2020, 7, 15),
-                    ArrivalCity = "Charlotte",
-                    DepartureCity = "Envigado",
+                    Arrival = new DateTime(2020, 6, 2),
+                    Departure = new DateTime(2020, 6, 15),
+                    ArrivalCity = "Kyiv",
+                    DepartureCity = "Rivne",
                     IsIncluded = true,
                     TransportType = TransportType.Plane
                 }
             };
 
-
             var tour = new Tour()
             {
                 Name = "Cool Tour",
                 Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut laoreet tortor. " +
-                                          "Aenean in magna blandit, imperdiet mi nec, placerat orci. Quisque id cursus diam, non" +
-                                          " porttitor odio. Donec id placerat nibh. Suspendisse potenti. Sed cursus auctor magna " +
-                                          "ut posuere. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin " +
-                                          "vulputate nisi at lectus lobortis volutpat sed vitae ligula. Donec tempus augue at " +
-                                          "turpis scelerisque pellentesque. Morbi non enim erat. Vestibulum vel faucibus turpis. " +
-                                          "Suspendisse at dapibus lorem. Cras auctor nunc vel ligula tincidunt aliquet.",
+                              "Aenean in magna blandit, imperdiet mi nec, placerat orci. Quisque id cursus diam, non" +
+                              " porttitor odio. Donec id placerat nibh. Suspendisse potenti. Sed cursus auctor magna " +
+                              "ut posuere. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin " +
+                              "vulputate nisi at lectus lobortis volutpat sed vitae ligula. Donec tempus augue at " +
+                              "turpis scelerisque pellentesque. Morbi non enim erat. Vestibulum vel faucibus turpis. " +
+                              "Suspendisse at dapibus lorem. Cras auctor nunc vel ligula tincidunt aliquet.",
                 Rating = 4.3,
                 TourVariants = new List<TourVariant> { tv1, tv2, tv3 },
                 Type = TourType.Hot
             };
-
+            
             var tour2 = new Tour()
             {
                 Name = "Go Go Tour",

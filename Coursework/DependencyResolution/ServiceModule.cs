@@ -2,6 +2,7 @@
 using BLL.Infrastructure.Interface;
 using BLL.Interface;
 using BLL.Services;
+using BLL.Services.Interface;
 using Ninject.Modules;
 
 namespace DependencyResolution
@@ -15,6 +16,7 @@ namespace DependencyResolution
             Bind<IResortService>().To<ResortService>();
             Bind<IToursService>().To<ToursService>();
             Bind<ITourVariantService>().To<TourVariantsService>();
+            Bind<ISearchService>().To<SearchService>();
         }
     }
 }
