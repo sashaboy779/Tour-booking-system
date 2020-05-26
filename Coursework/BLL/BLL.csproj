@@ -98,11 +98,14 @@
     <Compile Include="Dto\Responses\TourDto.cs" />
     <Compile Include="Dto\Responses\TourVariantDto.cs" />
     <Compile Include="Dto\Responses\TravelDto.cs" />
+    <Compile Include="Dto\TourBooking\Booking.cs" />
     <Compile Include="Infrastructure\ApplicationUserService.cs" />
     <Compile Include="Infrastructure\Dto\ApplicationUserDto.cs" />
     <Compile Include="Infrastructure\Interface\IApplicationUserService.cs" />
     <Compile Include="Infrastructure\Interface\IRoleService.cs" />
     <Compile Include="Infrastructure\RoleService.cs" />
+    <Compile Include="Services\BookingService.cs" />
+    <Compile Include="Services\Interface\IBookingService.cs" />
     <Compile Include="Services\Interface\IResortService.cs" />
     <Compile Include="Services\Interface\ISearchService.cs" />
     <Compile Include="Services\Interface\IToursService.cs" />
@@ -128,6 +131,7 @@
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

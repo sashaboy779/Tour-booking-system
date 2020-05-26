@@ -17,6 +17,7 @@ namespace DependencyResolution
             Bind<IToursService>().To<ToursService>();
             Bind<ITourVariantService>().To<TourVariantsService>();
             Bind<ISearchService>().To<SearchService>();
+            Bind<IBookingService>().To<BookingService>();
         }
     }
 }
