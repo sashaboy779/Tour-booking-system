@@ -73,9 +73,11 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="SearchFixture.cs" />
-        <Compile Include="SearchServiceTest.cs" />
+        <Compile Include="Fixture\SearchFixture.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Test\Abstract\ServiceTest.cs" />
+        <Compile Include="Test\BookingServiceTest.cs" />
+        <Compile Include="Test\SearchServiceTest.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

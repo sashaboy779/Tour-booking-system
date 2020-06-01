@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using AutoMapper;
 using BLL.Dto.Responses;
 using BLL.Services;
+using BLL.Tests.Fixture;
+using BLL.Tests.Test.Abstract;
 using DAL.Entity;
-using DAL.Interface;
-using Xunit;
 using Moq;
+using Xunit;
 using TourType = BLL.Dto.Enums.TourType;
 
-namespace BLL.Tests
+namespace BLL.Tests.Test
 {
-    public class SearchServiceTest : IClassFixture<SearchFixture>
+    public class SearchServiceTest : ServiceTest, IClassFixture<SearchFixture>
     {
         private SearchFixture fixture;
 
@@ -24,10 +24,7 @@ namespace BLL.Tests
         [Fact]
         public void GetTourByIdTest()
         {
-            var mockMapper = new Mock<IMapper>();
             mockMapper.Setup(x => x.Map<TourDto>(It.IsAny<Tour>())).Returns(fixture.TourDto);
-            
-            var mockUnit = new Mock<IUnitOfWork>();
             mockUnit.Setup(x => x.Tours.Get(It.IsAny<int>())).Returns(fixture.Tour);
             
             var service = new SearchService(mockUnit.Object, mockMapper.Object);
@@ -42,10 +39,7 @@ namespace BLL.Tests
         [Fact]
         public void GetResortByIdTest()
         {
-            var mockMapper = new Mock<IMapper>();
             mockMapper.Setup(x => x.Map<ResortDto>(It.IsAny<Resort>())).Returns(fixture.ResortDto);
-            
-            var mockUnit = new Mock<IUnitOfWork>();
             mockUnit.Setup(x => x.Resorts.Get(It.IsAny<int>())).Returns(fixture.Resort);
             
             var service = new SearchService(mockUnit.Object, mockMapper.Object);
@@ -60,10 +54,7 @@ namespace BLL.Tests
         [Fact]
         public void GetResortTest()
         {
-            var mockMapper = new Mock<IMapper>();
             mockMapper.Setup(x => x.Map<List<ResortDto>>(It.IsAny<List<Resort>>())).Returns(fixture.ResortsDto);
-            
-            var mockUnit = new Mock<IUnitOfWork>();
             mockUnit.Setup(x => x.Resorts.Find(It.IsAny<Expression<Func<Resort, bool>>>())).Returns(fixture.Resorts);
             
             var service = new SearchService(mockUnit.Object, mockMapper.Object);
@@ -77,11 +68,9 @@ namespace BLL.Tests
         [Fact]
         public void GetToursTest()
         {
-            var mockMapper = new Mock<IMapper>();
             mockMapper.Setup(x => x.Map<DAL.Entity.TourType>(It.IsAny<TourType>())).Returns(fixture.TourType);
             mockMapper.Setup(x => x.Map<List<TourDto>>(It.IsAny<List<Tour>>())).Returns(fixture.ToursDto);
             
-            var mockUnit = new Mock<IUnitOfWork>();
             mockUnit.Setup(x => x.Tours.Find(It.IsAny<Expression<Func<Tour, bool>>>())).Returns(fixture.Tours);
             
             var service = new SearchService(mockUnit.Object, mockMapper.Object);
@@ -96,9 +85,6 @@ namespace BLL.Tests
         [Fact]
         public void GetToursByRatingMoreTest()
         {
-            var mockMapper = new Mock<IMapper>();
-            var mockUnit = new Mock<IUnitOfWork>();
-
             mockMapper.Setup(x => x.Map<List<TourDto>>(It.IsAny<List<Tour>>())).Returns(fixture.ToursDto);
             mockUnit.Setup(x => x.Tours.Find(It.IsAny<Expression<Func<Tour, bool>>>())).Returns(fixture.Tours);
             
