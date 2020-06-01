@@ -99,7 +99,7 @@
         <Compile Include="Test\ResortServiceTest.cs" />
         <Compile Include="Test\ToursServiceTest.cs" />
         <Compile Include="Test\SearchServiceTest.cs" />
-        <Compile Include="Test\TourVariantsTest.cs" />
+        <Compile Include="Test\TourVariantServiceTest.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="App.config" />
