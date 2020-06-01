@@ -3,7 +3,7 @@ using BLL.Dto.QueryParameters;
 using BLL.Dto.Responses;
 using DAL.Entity;
 
-namespace BLL.Tests
+namespace BLL.Tests.Fixture
 {
     public class SearchFixture
     {
