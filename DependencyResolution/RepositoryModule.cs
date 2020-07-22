@@ -17,7 +17,7 @@ namespace DependencyResolution
             Bind<IRepository<TourVariant>>().To<TourVariantRepository>();
             Bind<IUnitOfWork>().To<UnitOfWork>();
             
-            Bind<ApplicationDbContext>().ToSelf().InRequestScope().WithConstructorArgument("connectionStringName", "Tour");
+            Bind<ApplicationDbContext>().ToSelf().WithConstructorArgument("connectionStringName", "Tour");
         }
     }
 }
