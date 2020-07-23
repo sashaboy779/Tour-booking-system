@@ -19,9 +19,9 @@ namespace DAL.EF
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<TourVariant>()
-                .HasRequired(tv => tv.Travel) 
+                .HasRequired(tv => tv.Travel)
                 .WithRequiredPrincipal()
-                .WillCascadeOnDelete(true); 
+                .WillCascadeOnDelete(true);
         }
     }
 }
