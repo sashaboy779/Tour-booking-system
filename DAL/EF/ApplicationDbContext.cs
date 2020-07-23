@@ -13,6 +13,7 @@ namespace DAL.EF
 
         public ApplicationDbContext(string connectionStringName) : base(connectionStringName, throwIfV1Schema: false)
         {
+            Database.SetInitializer(new CustomDatabaseInitializer());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

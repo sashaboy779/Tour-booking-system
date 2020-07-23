@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EF\CustomDatabaseInitializer.cs" />
     <Compile Include="Entity\Food.cs" />
     <Compile Include="Entity\Resort.cs" />
     <Compile Include="Entity\RoomType.cs" />
