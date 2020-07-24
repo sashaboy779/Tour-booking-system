@@ -6,7 +6,7 @@ using BLL.Dto.QueryParameters;
 using BLL.Dto.Responses;
 using BLL.Services.Interface;
 using DAL.Entity;
-using DAL.Interface;
+using DAL.Repository.Interface;
 
 namespace BLL.Services
 {

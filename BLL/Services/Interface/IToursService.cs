@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BLL.Dto.Requests;
 using BLL.Dto.Responses;
 
-namespace BLL.Interface
+namespace BLL.Services.Interface
 {
     public interface IToursService
     {

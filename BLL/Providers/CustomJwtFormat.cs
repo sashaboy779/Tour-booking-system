@@ -1,11 +1,8 @@
 ﻿using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataHandler.Encoder;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IdentityModel.Tokens;
-using System.Linq;
-using System.Web;
 using Thinktecture.IdentityModel.Tokens;
 
 namespace BLL.Providers
@@ -13,7 +10,7 @@ namespace BLL.Providers
     public class CustomJwtFormat : ISecureDataFormat<AuthenticationTicket>
     {
 
-        private readonly string issuer = string.Empty;
+        private readonly string issuer;
 
         public CustomJwtFormat(string issuer)
         {
@@ -35,7 +32,8 @@ namespace BLL.Providers
             var issued = data.Properties.IssuedUtc;
             var expires = data.Properties.ExpiresUtc;
 
-            var token = new JwtSecurityToken(issuer, audienceId, data.Identity.Claims, issued.Value.UtcDateTime, expires.Value.UtcDateTime, signingKey);
+            var token = new JwtSecurityToken(issuer, audienceId, data.Identity.Claims, 
+                issued.Value.UtcDateTime, expires.Value.UtcDateTime, signingKey);
             var handler = new JwtSecurityTokenHandler();
             var jwt = handler.WriteToken(token);
             return jwt;
