@@ -1,6 +1,5 @@
 ﻿using BLL.Dto.Requests;
 using BLL.Dto.Responses;
-using Moq;
 using DAL.Entity;
 
 namespace BLL.Tests.Fixture

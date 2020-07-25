@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DAL.Interface;
+using DAL.Repository.Interface;
 using Moq;
 
 namespace BLL.Tests.Test.Abstract
