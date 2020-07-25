@@ -74,7 +74,7 @@ namespace WebAPI.Controllers
 			if (!addUserResult.Succeeded)
 				return GetErrorResult(addUserResult);
 
-			await AssignRolesToUser(user.Id, new string[] { "User" });
+			await AssignRolesToUser(user.Id, new[] { "User" });
 			Uri locationHeader = new Uri(Url.Link("GetUserById", new { id = user.Id }));
 			return Created(locationHeader, user);
 		}

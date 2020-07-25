@@ -1,8 +1,7 @@
 ﻿using System.Net;
 using System.Web.Http;
-using System.Web.Http.Results;
 using BLL.Dto.Requests;
-using BLL.Interface;
+using BLL.Services.Interface;
 using WebAPI.Filters;
 
 namespace WebAPI.Controllers
