@@ -14,7 +14,7 @@ namespace BLL.Tests.Test
 {
     public class SearchServiceTest : ServiceTest, IClassFixture<SearchFixture>
     {
-        private SearchFixture fixture;
+        private readonly SearchFixture fixture;
 
         public SearchServiceTest(SearchFixture fixture)
         {

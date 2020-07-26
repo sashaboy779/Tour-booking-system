@@ -4,6 +4,7 @@ using System.Data.Entity.Infrastructure;
 using BLL.Dto.Requests;
 using BLL.Dto.Responses;
 using BLL.Services;
+using BLL.Services.Interface;
 using BLL.Tests.Fixture;
 using BLL.Tests.Test.Abstract;
 using DAL.Entity;
@@ -14,8 +15,8 @@ namespace BLL.Tests.Test
 {
     public class TourVariantServiceTest : ServiceTest, IClassFixture<TourVariantsFixture>
     {
-        private TourVariantsFixture fixture;
-        private TourVariantsService service;
+        private readonly TourVariantsFixture fixture;
+        private readonly ITourVariantService service;
 
         public TourVariantServiceTest(TourVariantsFixture fixture)
         {
