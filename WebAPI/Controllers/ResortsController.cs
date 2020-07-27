@@ -11,35 +11,35 @@ namespace WebAPI.Controllers
     [Authorize(Roles = "Admin, Moderator")]
     public class ResortsController : ApiController
     {
-        private readonly IResortService _resortService;
-        private readonly IToursService _toursService;
+        private readonly IResortService resortService;
+        private readonly IToursService toursService;
 
         public ResortsController(IResortService resortService, IToursService toursService)
         {
-            _resortService = resortService;
-            _toursService = toursService;
+            this.resortService = resortService;
+            this.toursService = toursService;
         }
 
-        [Route("{id}", Name = "GetResort")]
         [HttpGet]
+        [Route("{id}", Name = "GetResort")]
         public IHttpActionResult GetResort(int id)
         {
-            var resort = _resortService.GetResort(id);
+            var resort = resortService.GetResort(id);
             return Ok(resort);
         }
 
         [HttpGet]
         public IHttpActionResult GetAllResorts()
         {
-            var resorts = _resortService.GetResorts();
+            var resorts = resortService.GetResorts();
             return Ok(resorts);
         }
 
-        [Route("{id}/tours")]
         [HttpGet]
+        [Route("{id}/tours")]
         public IHttpActionResult GetTours(int id)
         {
-            var tours = _toursService.GetByResort(id);
+            var tours = toursService.GetByResort(id);
             return Ok(tours);
         }
 
@@ -49,7 +49,7 @@ namespace WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var resort = _resortService.AddResort(request);
+            var resort = resortService.AddResort(request);
             return Created(Url.Link("GetResort", new{id = resort.Id}),resort);
         }
 
@@ -59,15 +59,15 @@ namespace WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            _resortService.UpdateResort(request);
+            resortService.UpdateResort(request);
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        [Route("{id}")]
         [HttpDelete]
+        [Route("{id}")]
         public IHttpActionResult Delete(int id)
         {
-            _resortService.DeleteResort(id);
+            resortService.DeleteResort(id);
             return StatusCode(HttpStatusCode.NoContent);
         }
 

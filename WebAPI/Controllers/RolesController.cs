@@ -18,6 +18,7 @@ namespace WebAPI.Controllers
         {
         }
 
+        [HttpGet]
         [Route("{id:guid}", Name = "GetRoleById")]
         public async Task<IHttpActionResult> GetRole(string Id)
         {
@@ -29,6 +30,7 @@ namespace WebAPI.Controllers
             return NotFound();
         }
 
+        [HttpGet]
         [Route("", Name = "GetAllRoles")]
         public IHttpActionResult GetAllRoles()
         {
@@ -36,6 +38,7 @@ namespace WebAPI.Controllers
             return Ok(roles);
         }
 
+        [HttpPost]
         [Route("create")]
         public async Task<IHttpActionResult> Create(CreateRoleBindingModel model)
         {
@@ -56,6 +59,7 @@ namespace WebAPI.Controllers
             return Created(locationHeader, role);
         }
 
+        [HttpDelete]
         [Route("{id:guid}")]
         public async Task<IHttpActionResult> DeleteRole(string Id)
         {
@@ -74,6 +78,7 @@ namespace WebAPI.Controllers
             return NotFound();
         }
 
+        [HttpPost]
         [Route("ManageUsersInRole")]
         public async Task<IHttpActionResult> ManageUsersInRole(UsersInRoleModel model)
         {
@@ -97,45 +102,44 @@ namespace WebAPI.Controllers
 
         private async Task AddToRole(List<string> usersId, string roleName)
         {
-            foreach (string user in usersId)
+            foreach (var user in usersId)
             {
                 var appUser = await userService.FindByIdAsync(user);
 
                 if (appUser == null)
                 {
-                    ModelState.AddModelError("", String.Format("User: {0} does not exists", user));
+                    ModelState.AddModelError("", $"User: {user} does not exists");
                     continue;
                 }
 
+                var result = await userService.AddToRoleAsync(user, roleName);
                 if (!userService.IsInRole(user, roleName))
                 {
-                    IdentityResult result = await userService.AddToRoleAsync(user, roleName);
-
                     if (!result.Succeeded)
                     {
-                        ModelState.AddModelError("", String.Format("User: {0} could not be added to role", user));
+                        ModelState.AddModelError("", $"User: {user} could not be added to role");
                     }
                 }
             }
         }
 
-        private async Task RemoveFromRole(List<string> usersId, string roleName)
+        private async Task RemoveFromRole(IEnumerable<string> usersId, string roleName)
         {
-            foreach (string user in usersId)
+            foreach (var user in usersId)
             {
                 var appUser = await userService.FindByIdAsync(user);
 
                 if (appUser == null)
                 {
-                    ModelState.AddModelError("", String.Format("User: {0} does not exists", user));
+                    ModelState.AddModelError("", $"User: {user} does not exists");
                     continue;
                 }
 
-                IdentityResult result = await userService.RemoveFromRoleAsync(user, roleName);
+                var result = await userService.RemoveFromRoleAsync(user, roleName);
 
                 if (!result.Succeeded)
                 {
-                    ModelState.AddModelError("", String.Format("User: {0} could not be removed from role", user));
+                    ModelState.AddModelError("", $"User: {user} could not be removed from role");
                 }
             }
         }

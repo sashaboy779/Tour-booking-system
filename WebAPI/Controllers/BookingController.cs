@@ -13,11 +13,11 @@ namespace WebAPI.Controllers
     [RoutePrefix("api/booking")]
     public class BookingController : ApiController
     {
-        private readonly IBookingService _bookingService;
+        private readonly IBookingService bookingService;
 
         public BookingController(IBookingService bookingService)
         {
-            _bookingService = bookingService;
+            this.bookingService = bookingService;
         }
 
         [HttpPut]
@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
                 return BadRequest(ModelState);
             if (User.Identity.GetUserId() != booking.UserId)
                 return BadRequest("Current user id does not match id from request");
-            _bookingService.BookTour(booking);
+            bookingService.BookTour(booking);
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
                 return BadRequest(ModelState);
             if (User.Identity.GetUserId() != booking.UserId)
                 return BadRequest("Current user id does not match id from request");
-            _bookingService.CancelTourBooking(booking);
+            bookingService.CancelTourBooking(booking);
             return StatusCode(HttpStatusCode.NoContent);
         }
     }
