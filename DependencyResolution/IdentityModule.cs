@@ -14,8 +14,10 @@ namespace DependencyResolution
             Bind<RoleManager<IdentityRole>>().To<ApplicationRoleManager>();
             Bind<UserManager<ApplicationUser>>().To<ApplicationUserManager>();
 
-            Bind<RoleStore<IdentityRole>>().ToSelf().WithConstructorArgument("context", context => KernelInstance.Get<ApplicationDbContext>());
-            Bind<UserStore<ApplicationUser>>().ToSelf().WithConstructorArgument("context", context => KernelInstance.Get<ApplicationDbContext>());
+            Bind<RoleStore<IdentityRole>>().ToSelf().WithConstructorArgument("context", context => 
+                KernelInstance.Get<ApplicationDbContext>());
+            Bind<UserStore<ApplicationUser>>().ToSelf().WithConstructorArgument("context", context =>
+                KernelInstance.Get<ApplicationDbContext>());
         }
     }
 }

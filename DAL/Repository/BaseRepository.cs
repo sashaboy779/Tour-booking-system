@@ -3,8 +3,8 @@ using System.Linq;
 using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Collections.Generic;
-using DAL.Interface;
 using DAL.EF;
+using DAL.Repository.Interface;
 
 namespace DAL.Repository
 {

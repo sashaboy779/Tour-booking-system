@@ -1,58 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Dto.Requests;
 using BLL.Dto.Responses;
-using BLL.Interface;
+using BLL.Services.Interface;
 using DAL.Entity;
-using DAL.Interface;
+using DAL.Repository.Interface;
 
 namespace BLL.Services
 {
     public class ResortService : IResortService
     {
-        private readonly IMapper _mapper;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper mapper;
+        private readonly IUnitOfWork unitOfWork;
 
         public ResortService(IMapper mapper, IUnitOfWork unitOfWork)
         {
-            _mapper = mapper;
-            _unitOfWork = unitOfWork;
+            this.mapper = mapper;
+            this.unitOfWork = unitOfWork;
         }
 
         public ResortDto AddResort(ResortPostRequest request)
         {
-            var resort = _mapper.Map<Resort>(request);
-            _unitOfWork.Resorts.Create(resort);
-            _unitOfWork.Save();
-            return _mapper.Map<ResortDto>(resort);
+            var resort = mapper.Map<Resort>(request);
+            unitOfWork.Resorts.Create(resort);
+            unitOfWork.Save();
+            return mapper.Map<ResortDto>(resort);
         }
 
         public ResortDto GetResort(int id)
         {
-            var resort = _unitOfWork.Resorts.Get(id);
+            var resort = unitOfWork.Resorts.Get(id);
             if(resort == null)
                 throw new KeyNotFoundException($"Resort with key:{id} not found");
-            return _mapper.Map<ResortDto>(resort);
+            return mapper.Map<ResortDto>(resort);
         }
 
         public IEnumerable<ResortDto> GetResorts()
         {
-            var resorts = _unitOfWork.Resorts.GetAll();
-            return _mapper.Map<IEnumerable<ResortDto>>(resorts);
+            var resorts = unitOfWork.Resorts.GetAll();
+            return mapper.Map<IEnumerable<ResortDto>>(resorts);
         }
 
         public void UpdateResort(ResortUpdateRequest request)
         {
-            var resort = _mapper.Map<Resort>(request);
+            var resort = mapper.Map<Resort>(request);
             try
             {
-                _unitOfWork.Resorts.Update(resort);
-                _unitOfWork.Save();
+                unitOfWork.Resorts.Update(resort);
+                unitOfWork.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -62,11 +58,11 @@ namespace BLL.Services
 
         public void DeleteResort(int id)
         {
-            var resort = _unitOfWork.Resorts.Get(id);
+            var resort = unitOfWork.Resorts.Get(id);
             if(resort == null)
                 throw new KeyNotFoundException($"Resort with key:{id} not found");
-            _unitOfWork.Resorts.Delete(resort);
-            _unitOfWork.Save();
+            unitOfWork.Resorts.Delete(resort);
+            unitOfWork.Save();
         }
     }
 }

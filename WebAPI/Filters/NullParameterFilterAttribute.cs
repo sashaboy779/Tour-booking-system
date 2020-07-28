@@ -7,22 +7,22 @@ namespace WebAPI.Filters
 {
     public class NullParameterFilterAttribute : ActionFilterAttribute
     {
-        private readonly string _parameterName;
+        private readonly string parameterName;
 
         public NullParameterFilterAttribute(string parameterName)
         {
-            _parameterName = parameterName;
+            this.parameterName = parameterName;
         }
 
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            if (actionContext.ActionArguments.TryGetValue(_parameterName, out var parameterValue))
+            if (actionContext.ActionArguments.TryGetValue(parameterName, out var parameterValue))
             {
                 if (parameterValue == null)
                 {
                     
                     actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.BadRequest,
-                        $"The {_parameterName} cannot be null.");
+                        $"The {parameterName} cannot be null.");
                 }
             }
         }

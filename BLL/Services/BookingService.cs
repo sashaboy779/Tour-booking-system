@@ -4,42 +4,42 @@ using System.Data.Entity.Infrastructure;
 using BLL.Dto.TourBooking;
 using BLL.Services.Interface;
 using DAL.Identity;
-using DAL.Interface;
+using DAL.Repository.Interface;
 using Microsoft.AspNet.Identity;
 
 namespace BLL.Services
 {
     public class BookingService : IBookingService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public BookingService(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
         {
-            _unitOfWork = unitOfWork;
-            _userManager = userManager;
+            this.unitOfWork = unitOfWork;
+            this.userManager = userManager;
         }
 
         public void BookTour(Booking booking)
         {
-            var tourist = _userManager.FindById(booking.UserId);
+            var tourist = userManager.FindById(booking.UserId);
             if (tourist == null)
                 throw new KeyNotFoundException($"User with id {booking.UserId} not found");
-            var tourVariant = _unitOfWork.TourVariants.Get(booking.TourVariantId);
+            var tourVariant = unitOfWork.TourVariants.Get(booking.TourVariantId);
             if (tourVariant == null)
                 throw new KeyNotFoundException($"Tour variant with id {booking.UserId} not found");
 
             tourVariant.Tourists.Add(tourist);
             tourVariant.TouristsNumber++;
-            _unitOfWork.Save();
+            unitOfWork.Save();
         }
 
         public void CancelTourBooking(Booking booking)
         {
-            var tourist = _userManager.FindById(booking.UserId);
+            var tourist = userManager.FindById(booking.UserId);
             if (tourist == null)
                 throw new KeyNotFoundException($"User with id {booking.UserId} not found");
-            var tourVariant = _unitOfWork.TourVariants.Get(booking.TourVariantId);
+            var tourVariant = unitOfWork.TourVariants.Get(booking.TourVariantId);
             if (tourVariant == null)
                 throw new KeyNotFoundException($"Tour variant with id {booking.UserId} not found");
 
@@ -48,12 +48,12 @@ namespace BLL.Services
                 if (!tourVariant.Tourists.Remove(tourist))
                     throw new InvalidOperationException("This booking does not exist");
                 tourVariant.TouristsNumber--;
-                _unitOfWork.Save();
+                unitOfWork.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
                 throw new InvalidOperationException(
-                    $"Cant revert booking of tour variant with id {tourVariant.Id} from user with id{tourist.Id}");
+                    $"Cant revert booking of tour variant with id {tourVariant.Id} from user with id {tourist.Id}");
             }
         }
     }

@@ -1,8 +1,6 @@
 ﻿using BLL.Dto.Requests;
 using BLL.Dto.Responses;
-using BLL.Dto.TourBooking;
 using DAL.Entity;
-using DAL.Identity;
 using TourType = BLL.Dto.Enums.TourType;
 
 namespace BLL.Tests.Fixture

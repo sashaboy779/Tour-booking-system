@@ -3,60 +3,60 @@ using System.Data.Entity.Infrastructure;
 using AutoMapper;
 using BLL.Dto.Requests;
 using BLL.Dto.Responses;
-using BLL.Interface;
+using BLL.Services.Interface;
 using DAL.Entity;
-using DAL.Interface;
+using DAL.Repository.Interface;
 
 namespace BLL.Services
 {
     public class ToursService : IToursService
     {
-        private readonly IMapper _mapper;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper mapper;
+        private readonly IUnitOfWork unitOfWork;
 
         public ToursService(IMapper mapper, IUnitOfWork unitOfWork)
         {
-            _mapper = mapper;
-            _unitOfWork = unitOfWork;
+            this.mapper = mapper;
+            this.unitOfWork = unitOfWork;
         }
 
         public TourDto AddTour(TourPostRequest request)
         {
-            var tour = _mapper.Map<Tour>(request);
+            var tour = mapper.Map<Tour>(request);
             try
             {
-                _unitOfWork.Tours.Create(tour);
-                _unitOfWork.Save();
+                unitOfWork.Tours.Create(tour);
+                unitOfWork.Save();
             }
             catch (DbUpdateException)
             {
                 throw new KeyNotFoundException($"Resort with id:{request.ResortId} not found");
             }
 
-            return _mapper.Map<TourDto>(tour);
+            return mapper.Map<TourDto>(tour);
         }
 
         public TourDto GetTour(int id)
         {
-            var tour = _unitOfWork.Tours.Get(id);
+            var tour = unitOfWork.Tours.Get(id);
             if (tour == null)
                 throw new KeyNotFoundException($"Tour with key:{id} not found");
-            return _mapper.Map<TourDto>(tour);
+            return mapper.Map<TourDto>(tour);
         }
 
         public IEnumerable<TourDto> GetTours()
         {
-            var tours = _unitOfWork.Tours.GetAll();
-            return _mapper.Map<IEnumerable<TourDto>>(tours);
+            var tours = unitOfWork.Tours.GetAll();
+            return mapper.Map<IEnumerable<TourDto>>(tours);
         }
 
         public void UpdateTour(TourUpdateRequest request)
         {
-            var tour = _mapper.Map<Tour>(request);
+            var tour = mapper.Map<Tour>(request);
             try
             {
-                _unitOfWork.Tours.Update(tour);
-                _unitOfWork.Save();
+                unitOfWork.Tours.Update(tour);
+                unitOfWork.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -67,17 +67,17 @@ namespace BLL.Services
 
         public void DeleteTour(int id)
         {
-            var tour = _unitOfWork.Tours.Get(id);
+            var tour = unitOfWork.Tours.Get(id);
             if (tour == null)
                 throw new KeyNotFoundException($"Tour with key:{id} not found");
-            _unitOfWork.Tours.Delete(tour);
-            _unitOfWork.Save();
+            unitOfWork.Tours.Delete(tour);
+            unitOfWork.Save();
         }
 
         public IEnumerable<TourDto> GetByResort(int resortId)
         {
-            var tours = _unitOfWork.Resorts.Get(resortId).Tours;
-            return _mapper.Map<IEnumerable<TourDto>>(tours);
+            var tours = unitOfWork.Resorts.Get(resortId).Tours;
+            return mapper.Map<IEnumerable<TourDto>>(tours);
         }
     }
 }

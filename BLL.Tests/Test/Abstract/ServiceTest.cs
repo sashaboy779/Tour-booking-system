@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
-using DAL.Interface;
+using DAL.Repository.Interface;
 using Moq;
 
 namespace BLL.Tests.Test.Abstract
 {
     public abstract class ServiceTest
     {
-        protected Mock<IMapper> mockMapper;
-        protected Mock<IUnitOfWork> mockUnit;
+        protected readonly Mock<IMapper> mockMapper;
+        protected readonly Mock<IUnitOfWork> mockUnit;
 
-        public ServiceTest()
+        protected ServiceTest()
         {
             mockMapper = new Mock<IMapper>();
             mockUnit = new Mock<IUnitOfWork>();

@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Web.Http;
 using BLL.Dto.Requests;
-using BLL.Interface;
+using BLL.Services.Interface;
 using WebAPI.Filters;
 
 namespace WebAPI.Controllers
@@ -11,35 +11,35 @@ namespace WebAPI.Controllers
     [Authorize(Roles = "Admin, Manager")]
     public class ToursController : ApiController
     {
-        private readonly IToursService _toursService;
-        private readonly ITourVariantService _tourVariantService;
+        private readonly IToursService toursService;
+        private readonly ITourVariantService tourVariantService;
         
         public ToursController(IToursService toursService, ITourVariantService tourVariantService)
         {
-            _toursService = toursService;
-            _tourVariantService = tourVariantService;
+            this.toursService = toursService;
+            this.tourVariantService = tourVariantService;
         }
 
-        [Route("{id}", Name = "GetTour")]
         [HttpGet]
+        [Route("{id}", Name = "GetTour")]
         public IHttpActionResult GetTour(int id)
         {
-            var tour = _toursService.GetTour(id);
+            var tour = toursService.GetTour(id);
             return Ok(tour);
         }
 
         [HttpGet]
         public IHttpActionResult GetTours()
         {
-            var tours = _toursService.GetTours();
+            var tours = toursService.GetTours();
             return Ok(tours);
         }
 
-        [Route("{id}/variants")]
         [HttpGet]
+        [Route("{id}/variants")]
         public IHttpActionResult GetTourVariants(int id)
         {
-            var tourVariants = _tourVariantService.GetByTour(id);
+            var tourVariants = tourVariantService.GetByTour(id);
             return Ok(tourVariants);
         }
 
@@ -49,7 +49,7 @@ namespace WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var tour = _toursService.AddTour(request);
+            var tour = toursService.AddTour(request);
             return Created(Url.Link("GetTour", new {id = tour.Id}), tour);
         }
 
@@ -59,15 +59,15 @@ namespace WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            _toursService.UpdateTour(request);
+            toursService.UpdateTour(request);
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        [Route("{id}")]
         [HttpDelete]
+        [Route("{id}")]
         public IHttpActionResult DeleteTour(int id)
         {
-            _toursService.DeleteTour(id);
+            toursService.DeleteTour(id);
             return StatusCode(HttpStatusCode.NoContent);
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Web.Http;
 using BLL.Dto.Requests;
-using BLL.Interface;
+using BLL.Services.Interface;
 using WebAPI.Filters;
 
 namespace WebAPI.Controllers
@@ -11,41 +11,41 @@ namespace WebAPI.Controllers
     [Authorize(Roles = "Admin, Manager")]
     public class TourVariantsController : ApiController
     {
-        private readonly ITourVariantService _tourVariantService;
+        private readonly ITourVariantService tourVariantService;
 
         public TourVariantsController(ITourVariantService tourVariantService)
         {
-            _tourVariantService = tourVariantService;
+            this.tourVariantService = tourVariantService;
         }
 
-        [Route("{id}", Name = "GetTourVariant")]
         [HttpGet]
+        [Route("{id}", Name = "GetTourVariant")]
         public IHttpActionResult GetTourVariant(int id)
         {
-            var tourVariant = _tourVariantService.GetTourVariant(id);
+            var tourVariant = tourVariantService.GetTourVariant(id);
             return Ok(tourVariant);             
         }
 
         [HttpGet]
         public IHttpActionResult GetTourVariants()
         {
-            var tourVariants = _tourVariantService.GetTourVariants();
+            var tourVariants = tourVariantService.GetTourVariants();
             return Ok(tourVariants);
         }
 
-        [Route("{id}/tourists")]
         [HttpGet]
+        [Route("{id}/tourists")]
         public IHttpActionResult GetTourists(int id)
         {
-            var tourists = _tourVariantService.GetTourists(id);
+            var tourists = tourVariantService.GetTourists(id);
             return Ok(tourists);
         }
 
-        [Route("byTourist/{touristId}")]
         [HttpGet]
+        [Route("byTourist/{touristId}")]
         public IHttpActionResult GetByTourist(string touristId)
         {
-            var tourVariants = _tourVariantService.GetByTourist(touristId);
+            var tourVariants = tourVariantService.GetByTourist(touristId);
             return Ok(tourVariants);
         }
 
@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var tourVariant = _tourVariantService.AddTourVariant(request);
+            var tourVariant = tourVariantService.AddTourVariant(request);
             return Created(Url.Link("GetTourVariant", new { id = tourVariant.Id}), tourVariant);
         }
 
@@ -67,15 +67,15 @@ namespace WebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            _tourVariantService.UpdateTourVariant(request);
+            tourVariantService.UpdateTourVariant(request);
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        [Route("{id}")]
         [HttpDelete]
+        [Route("{id}")]
         public IHttpActionResult DeleteTourVariant(int id)
         {
-            _tourVariantService.DeleteTourVariant(id);
+            tourVariantService.DeleteTourVariant(id);
             return StatusCode(HttpStatusCode.NoContent);
         }
     }

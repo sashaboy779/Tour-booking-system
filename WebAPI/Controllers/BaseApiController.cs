@@ -6,8 +6,8 @@ namespace WebAPI.Controllers
 {
     public class BaseApiController : ApiController
     {
-        protected IApplicationUserService userService;
-        protected IRoleService roleService;
+        protected readonly IApplicationUserService userService;
+        protected readonly IRoleService roleService;
 
         public BaseApiController(IApplicationUserService userService, IRoleService roleService)
         {
@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
             {
                 if (result.Errors != null)
                 {
-                    foreach (string error in result.Errors)
+                    foreach (var error in result.Errors)
                     {
                         ModelState.AddModelError("", error);
                     }

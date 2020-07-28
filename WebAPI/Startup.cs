@@ -20,7 +20,7 @@ namespace WebAPI
     {
         public void Configuration(IAppBuilder app)
         {
-            HttpConfiguration httpConfig = new HttpConfiguration();
+            var httpConfig = new HttpConfiguration();
             ConfigureOAuthTokenGeneration(app);
             ConfigureOAuthTokenConsumption(app); 
             ConfigureWebApi(httpConfig);

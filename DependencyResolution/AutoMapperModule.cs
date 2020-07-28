@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Ninject;
 using Ninject.Modules;
 
@@ -24,7 +18,7 @@ namespace DependencyResolution
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddMaps(new []{"BLL", "WebAPI"});
+                cfg.AddMaps("BLL", "WebAPI");
             });
 
             return config;

@@ -2,11 +2,11 @@
 using BLL.Infrastructure.DTO;
 using DAL.Identity;
 
-namespace DependencyResolution
+namespace BLL.MapperProfiles
 {
-    public class DTOProfile : Profile
+    public class IdentityProfile : Profile
     {
-        public DTOProfile()
+        public IdentityProfile()
         {
             CreateMap<ApplicationUser, ApplicationUserDto>().ReverseMap();
         }

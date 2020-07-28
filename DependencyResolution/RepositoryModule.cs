@@ -1,10 +1,9 @@
 ﻿using DAL;
 using DAL.EF;
 using DAL.Entity;
-using DAL.Interface;
 using DAL.Repository;
+using DAL.Repository.Interface;
 using Ninject.Modules;
-using Ninject.Web.Common;
 
 namespace DependencyResolution
 {

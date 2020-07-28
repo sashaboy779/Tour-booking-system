@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using BLL.Dto.Requests;
-using BLL.Dto.Responses;
 using DAL.Entity;
 
 namespace BLL.MapperProfiles
