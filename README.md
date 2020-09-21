@@ -14,6 +14,9 @@ Before you begin, ensure you have met the following requirements:
 * You have a Windows machine
 * You have installed [SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 
+## Tech Stack
+ASP.NET Web API 2, Microsoft SQL Server
+
 ## Authentication
 Some resources are protected so you will need to provide JWT token with the request. For example, let's get the administrator's token.
 1. Send the request using a **PowerShell** 
